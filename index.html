@@ -29,6 +29,65 @@
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            cursor: none;
+        }
+
+        /* ── CUSTOM CURSOR ── */
+        .cursor {
+            width: 12px; height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: width .3s, height .3s, background .3s;
+        }
+        .cursor-ring {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(212,168,75,.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%,-50%);
+            transition: width .3s, height .3s;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-wrap {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-2);
+            overflow: hidden;
+            padding: 18px 0;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 60px;
+            animation: marquee 35s linear infinite;
+            width: max-content;
+        }
+        .marquee-item {
+            white-space: nowrap;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .marquee-item .sep {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: .6;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
 
         /* ── NAV ── */
@@ -1002,6 +1061,9 @@
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <!-- NAV -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">Роберт Фитчелл</a>
@@ -1043,6 +1105,28 @@
         </div>
     </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <div class="marquee-item">Тренинги по продажам <span class="sep"></span></div>
+        <div class="marquee-item">Обучение руководителей <span class="sep"></span></div>
+        <div class="marquee-item">Продажи × Импровизация <span class="sep"></span></div>
+        <div class="marquee-item">10 000+ менеджеров <span class="sep"></span></div>
+        <div class="marquee-item">Обучение тренеров <span class="sep"></span></div>
+        <div class="marquee-item">18 лет в продажах <span class="sep"></span></div>
+        <div class="marquee-item">Корпоративные тренинги <span class="sep"></span></div>
+        <div class="marquee-item">Shiseido · Amway · Л'Этуаль <span class="sep"></span></div>
+        <div class="marquee-item">Тренинги по продажам <span class="sep"></span></div>
+        <div class="marquee-item">Обучение руководителей <span class="sep"></span></div>
+        <div class="marquee-item">Продажи × Импровизация <span class="sep"></span></div>
+        <div class="marquee-item">10 000+ менеджеров <span class="sep"></span></div>
+        <div class="marquee-item">Обучение тренеров <span class="sep"></span></div>
+        <div class="marquee-item">18 лет в продажах <span class="sep"></span></div>
+        <div class="marquee-item">Корпоративные тренинги <span class="sep"></span></div>
+        <div class="marquee-item">Shiseido · Amway · Л'Этуаль <span class="sep"></span></div>
+    </div>
+</div>
 
 <!-- STATS -->
 <div id="stats">
@@ -1431,6 +1515,29 @@
 </footer>
 
 <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    const animCursor = () => {
+        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+        rx += (mx - rx) * .12; ry += (my - ry) * .12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animCursor);
+    };
+    animCursor();
+    document.querySelectorAll('a, button, .program-card, .testi-card, .why-card, .client-item').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.width = '20px'; cursor.style.height = '20px';
+            ring.style.width = '60px'; ring.style.height = '60px';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.width = '12px'; cursor.style.height = '12px';
+            ring.style.width = '40px'; ring.style.height = '40px';
+        });
+    });
+
     // Scroll animations
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
