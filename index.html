@@ -1068,7 +1068,10 @@
             .about-img-wrap img { max-height: 400px; }
             .about-badge { left: 0; }
 
-            .programs-grid { grid-template-columns: 1fr; }
+            .programs-grid { grid-template-columns: repeat(2, 1fr); }
+            .programs-grid .program-card { grid-column: auto; }
+            .programs-grid .program-card:nth-child(4) { grid-column: auto; }
+            .programs-grid .program-card:nth-child(5) { grid-column: auto; }
             .why-grid { grid-template-columns: repeat(2, 1fr); }
             .why-card:last-child { grid-column: span 2; max-width: 340px; margin: 0 auto; }
             .clients-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1084,6 +1087,7 @@
             .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
             .why-card:last-child { grid-column: span 1; max-width: 100%; }
             .why-grid { grid-template-columns: 1fr; }
+            .programs-grid { grid-template-columns: 1fr; }
             .form-card { padding: 28px 20px; }
         }
     </style>
