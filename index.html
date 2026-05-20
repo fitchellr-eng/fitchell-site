@@ -466,9 +466,16 @@
 
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 24px;
         }
+
+        .programs-grid .program-card {
+            grid-column: span 2;
+        }
+
+        .programs-grid .program-card:nth-child(4) { grid-column: 2 / 4; }
+        .programs-grid .program-card:nth-child(5) { grid-column: 4 / 6; }
 
         .program-card {
             background: var(--bg-3);
@@ -1264,6 +1271,40 @@
                     <span class="format-tag">Долгосрочно</span>
                 </div>
             </div>
+            <div class="program-card fade-up">
+                <div class="program-num">04</div>
+                <h3 class="program-title">Аудит системы продаж</h3>
+                <p class="program-desc">Диагностирую вашу воронку, команду и процессы изнутри. Нахожу точки потерь — и даю конкретный план их устранения. Без воды, только цифры и действия.</p>
+                <ul class="program-features">
+                    <li>Анализ воронки и конверсий</li>
+                    <li>Оценка навыков команды продаж</li>
+                    <li>Выявление узких мест в процессах</li>
+                    <li>Проверка скриптов и инструментов</li>
+                    <li>Дорожная карта роста</li>
+                </ul>
+                <div class="program-formats">
+                    <span class="format-tag">Онлайн / Выезд</span>
+                    <span class="format-tag">3–7 дней</span>
+                    <span class="format-tag">Под бизнес</span>
+                </div>
+            </div>
+            <div class="program-card fade-up">
+                <div class="program-num">05</div>
+                <h3 class="program-title">Построение отдела продаж</h3>
+                <p class="program-desc">Создам отдел продаж с нуля или перестрою существующий. Найм, регламенты, метрики, CRM — всё под ключ. Результат: команда, которая продаёт системно.</p>
+                <ul class="program-features">
+                    <li>Структура и найм менеджеров</li>
+                    <li>Регламенты и стандарты работы</li>
+                    <li>Настройка KPI и метрик</li>
+                    <li>Внедрение CRM и воронки</li>
+                    <li>Запуск и сопровождение команды</li>
+                </ul>
+                <div class="program-formats">
+                    <span class="format-tag">Под ключ</span>
+                    <span class="format-tag">1–3 месяца</span>
+                    <span class="format-tag">Сопровождение</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1508,6 +1549,8 @@
                                 <option value="Продажи">Продажи: от первого касания до закрытия сделки</option>
                                 <option value="Руководители">Обучение руководителей: сильные лидеры</option>
                                 <option value="Тренеры">Обучение тренеров: эксперты внутри компании</option>
+                                <option value="Аудит">Аудит системы продаж</option>
+                                <option value="Построение ОП">Построение отдела продаж</option>
                                 <option value="Несколько / не определился">Несколько программ / ещё не определился</option>
                             </select>
                         </div>
