@@ -996,6 +996,28 @@
             font-size: 0.8rem;
         }
 
+        .footer-legal {
+            width: 100%;
+            text-align: center;
+            padding-top: 16px;
+            margin-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.72rem;
+            color: rgba(136,136,136,0.4);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: rgba(136,136,136,0.4);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-legal a:hover { color: var(--gold); }
+
         /* ── ANIMATIONS ── */
         .fade-up {
             opacity: 0;
@@ -1512,6 +1534,12 @@
         <a href="#contact">Контакты</a>
     </div>
     <div class="footer-copy">© 2025 Роберт Фитчелл. Бизнес-тренер</div>
+    <div class="footer-legal">
+        <span>Ахметгареев Роберт Рамзилевич</span>
+        <span>ИНН 027502395090</span>
+        <span>Самозанятый</span>
+        <a href="oferta.html">Публичная оферта</a>
+    </div>
 </footer>
 
 <script>
