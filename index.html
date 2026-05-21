@@ -594,6 +594,91 @@
             letter-spacing: 0.02em;
         }
 
+        /* ── PROCESS ── */
+        #process { background: var(--bg); }
+
+        .process-steps {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            margin-top: 64px;
+            position: relative;
+        }
+
+        .process-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 44px;
+            left: 50%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(137,101,224,.5), rgba(245,54,92,.3));
+        }
+
+        .process-circle {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(137,101,224,.35);
+            background: rgba(8,4,18,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 28px;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .process-step:hover .process-circle {
+            border-color: rgba(137,101,224,.8);
+            box-shadow: 0 0 24px rgba(137,101,224,.25);
+        }
+
+        .process-num {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: .05em;
+            background: linear-gradient(135deg, #5e72e4, #8965e0, #f5365c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: .02em;
+        }
+
+        .process-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 180px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .process-steps { flex-direction: column; align-items: center; gap: 40px; }
+            .process-step:not(:last-child)::after {
+                top: auto; left: 50%; bottom: -40px;
+                width: 1px; height: 40px;
+                background: linear-gradient(180deg, rgba(137,101,224,.5), rgba(245,54,92,.3));
+            }
+        }
+
         /* ── IMPROVIZ ── */
         #improviz { background: var(--bg); }
 
@@ -1124,6 +1209,8 @@
         .about-badge    { background: rgba(0,0,0,0.88) !important; }
         #programs       { background: rgba(0,0,0,0.65) !important; }
         .program-card   { background: rgba(8,4,18,0.82) !important; }
+        #process        { background: rgba(0,0,0,0.55) !important; }
+        .process-circle { background: rgba(8,4,18,0.88) !important; }
         #improviz       { background: rgba(0,0,0,0.50) !important; }
         .improviz-step  { background: rgba(8,4,18,0.75) !important; }
         #testimonials   { background: rgba(0,0,0,0.65) !important; }
@@ -1137,7 +1224,7 @@
         footer          { background: rgba(0,0,0,0.80) !important; }
         .marquee-wrap   { background: rgba(0,0,0,0.60) !important; }
         /* All sections above canvas */
-        nav, .marquee-wrap, #hero, #stats, section, footer { position: relative; z-index: 2; }
+        nav, .marquee-wrap, #hero, #stats, #process, section, footer { position: relative; z-index: 2; }
         nav { z-index: 100; }
 
 
@@ -1466,6 +1553,39 @@
     </div>
 </section>
 
+<!-- PROCESS -->
+<section id="process">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Как я работаю</div>
+            <h2 class="section-title">Четыре шага<br>до результата</h2>
+            <p class="section-sub">От первого звонка до измеримого роста продаж вашей команды.</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step fade-up">
+                <div class="process-circle"><span class="process-num">01</span></div>
+                <div class="process-title">Диагностика</div>
+                <p class="process-desc">Разбираем текущую ситуацию, цели и точки роста — за 90 минут.</p>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-circle"><span class="process-num">02</span></div>
+                <div class="process-title">Стратегия</div>
+                <p class="process-desc">Разрабатываю программу под вашу команду с конкретными метриками.</p>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-circle"><span class="process-num">03</span></div>
+                <div class="process-title">Внедрение</div>
+                <p class="process-desc">Провожу тренинг, работаю с командой шаг за шагом.</p>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-circle"><span class="process-num">04</span></div>
+                <div class="process-title">Результат</div>
+                <p class="process-desc">Замеряем рост, корректируем и масштабируем то, что работает.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section id="testimonials">
     <div class="container">
@@ -1600,7 +1720,7 @@
             <div class="client-item fade-up">Greenway</div>
             <div class="client-item fade-up">Империя Сумок</div>
             <div class="client-item fade-up">Alpari</div>
-            <div class="client-item fade-up">ZorgeFitness</div>
+            <div class="client-item fade-up">Центр онлайн-образования Азата Валеева</div>
         </div>
     </div>
 </section>
@@ -1613,22 +1733,6 @@
                 <div class="section-label">Контакты</div>
                 <h2 class="section-title">Готовы увеличить продажи вашей команды?</h2>
                 <p class="section-sub">Оставьте заявку — свяжусь с вами в течение 24 часов и подберём оптимальный формат.</p>
-                <div class="contact-info-items">
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">📱</div>
-                        <div>
-                            <div class="contact-info-label">Телефон / WhatsApp</div>
-                            <div class="contact-info-val">+7 917 79 55 239</div>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">✉️</div>
-                        <div>
-                            <div class="contact-info-label">Email</div>
-                            <div class="contact-info-val">fitchellr@gmail.com</div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="fade-up">
                 <div class="form-card">
