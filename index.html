@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Роберт Фитчелл — Бизнес-тренер</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -133,16 +134,17 @@
         .nav-links a:hover { color: var(--gold); }
 
         .nav-cta {
-            background: var(--gold) !important;
-            color: #000 !important;
+            background: linear-gradient(135deg, #5e72e4, #8965e0, #f5365c) !important;
+            color: #fff !important;
             padding: 10px 24px;
             border-radius: 8px;
             font-weight: 700 !important;
             font-size: 0.875rem !important;
-            transition: background 0.2s, transform 0.2s !important;
+            transition: opacity 0.2s, transform 0.2s !important;
+            box-shadow: 0 3px 16px rgba(94,114,228,.35) !important;
         }
 
-        .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+        .nav-cta:hover { opacity: .85 !important; transform: translateY(-1px); }
 
         /* ── HERO ── */
         #hero {
@@ -956,8 +958,8 @@
 
         .btn-submit {
             width: 100%;
-            background: var(--gold);
-            color: #000;
+            background: linear-gradient(135deg, #5e72e4, #8965e0, #f5365c);
+            color: #fff;
             border: none;
             padding: 17px;
             border-radius: 12px;
@@ -971,7 +973,7 @@
         }
 
         .btn-submit:hover {
-            background: var(--gold-light);
+            opacity: .88;
             transform: translateY(-2px);
         }
 
@@ -1684,7 +1686,6 @@
     <div class="footer-copy">© 2025 Роберт Фитчелл. Бизнес-тренер</div>
     <div class="footer-legal">
         <span>ИНН 027502395090</span>
-        <span>Самозанятый</span>
         <a href="oferta.html">Публичная оферта</a>
     </div>
 </footer>
