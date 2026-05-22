@@ -160,6 +160,20 @@
     .stage-cell.rec { color: rgba(255,255,255,0.8); line-height: 1.5; }
     .rec-tag { display: inline-block; background: rgba(137,101,224,0.15); border: 1px solid rgba(137,101,224,0.3); color: var(--gold); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-right: 6px; }
 
+    /* ── ИНСТРУМЕНТЫ ── */
+    .tools-intro { background: rgba(137,101,224,0.07); border: 1px solid rgba(137,101,224,0.2); border-radius: 16px; padding: 28px 32px; margin-top: 48px; margin-bottom: 40px; }
+    .tools-intro-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .tools-intro-text { font-size: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.8; }
+    .tools-intro-text strong { color: #fff; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .tool-card { background: rgba(0,0,0,0.45); border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px; backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.25s; position: relative; overflow: hidden; }
+    .tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); opacity: 0; transition: opacity 0.3s; }
+    .tool-card:hover::before { opacity: 1; }
+    .tool-card:hover { border-color: rgba(137,101,224,0.45); transform: translateY(-2px); }
+    .tool-num { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 8px; opacity: 0.8; }
+    .tool-title { font-size: 0.9rem; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.25; }
+    .tool-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
     /* ── ФОРМА ── */
     #form-section { background: rgba(0,0,0,0.45); border-radius: 24px; padding: 56px 52px; border: 1px solid var(--border); backdrop-filter: blur(20px); margin-top: 80px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
@@ -230,13 +244,14 @@
     </h1>
     <p class="hero-desc fade-up">
       Программа для руководителей, которые хотят не контролировать —
-      а вести. Два дня интенсивной практики: ситуационное лидерство,
-      мотивационные инструменты и реальные кейсы из вашего бизнеса.
+      а вести. Ситуационное лидерство, мотивационные инструменты
+      и реальные кейсы из вашего бизнеса. Состав и формат
+      разрабатывается индивидуально под запрос.
     </p>
     <div class="hero-stats fade-up">
       <div><div class="hero-stat-num">18+</div><div class="hero-stat-label">Лет опыта</div></div>
       <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Руководителей</div></div>
-      <div><div class="hero-stat-num">2 дня</div><div class="hero-stat-label">По 8 часов</div></div>
+      <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Инструментов</div></div>
     </div>
   </section>
 
@@ -258,14 +273,14 @@
         <div class="exp-desc">Среди участников — линейные менеджеры, директора отделов, топ-менеджеры компаний. Программа адаптируется под уровень и задачи каждой группы.</div>
       </div>
       <div class="exp-card fade-up">
-        <div class="exp-num">4</div>
-        <div class="exp-title">Стиля управления в одном тренинге</div>
-        <div class="exp-desc">Ситуационное лидерство — не абстракция, а рабочий инструмент. Участники уходят с умением переключаться между стилями осознанно, в зависимости от задачи и сотрудника.</div>
+        <div class="exp-num">15+</div>
+        <div class="exp-title">Инструментов в арсенале</div>
+        <div class="exp-desc">От ситуационного лидерства и мотивации по Герчикову до управления конфликтами и коучингового подхода. Каждый инструмент — проверен в реальных командах.</div>
       </div>
       <div class="exp-card fade-up">
         <div class="exp-num">→</div>
-        <div class="exp-title">Результат виден сразу</div>
-        <div class="exp-desc">После первого дня руководители начинают иначе смотреть на свою команду. После второго — у них есть конкретный план изменений, который можно применить на следующей неделе.</div>
+        <div class="exp-title">Программа под ваш запрос</div>
+        <div class="exp-desc">Состав тем, формат и длительность обсуждаются под конкретную команду и задачи бизнеса. Участники уходят с планом действий, который можно применить уже на следующей неделе.</div>
       </div>
     </div>
   </section>
@@ -273,65 +288,92 @@
   <!-- ── ПРОГРАММА ── -->
   <section id="program">
     <div class="section-label fade-up">Программа</div>
-    <h2 class="section-title fade-up">2 дня — полный<br><span class="accent">арсенал руководителя</span></h2>
-    <p class="section-sub fade-up">Каждый блок — закрытая тема с теорией, групповой практикой и разбором реальных ситуаций участников.</p>
+    <h2 class="section-title fade-up">Инструменты<br><span class="accent">сильного руководителя</span></h2>
+    <p class="section-sub fade-up">Программа разрабатывается индивидуально. Из библиотеки тем ниже выбираются блоки, которые актуальны для вашей команды и задач бизнеса.</p>
 
-    <div class="modules-list">
-      <div class="module-row fade-up">
-        <div class="module-num">01</div>
-        <div class="module-body">
-          <div class="module-meta">День 1 · Блок 1</div>
-          <div class="module-title">Ситуационное лидерство</div>
-          <ul class="module-outcomes">
-            <li>Поймёте, почему один стиль управления не работает с разными сотрудниками</li>
-            <li>Освоите 4 стиля лидерства: директивный, наставнический, поддерживающий, делегирующий</li>
-            <li>Научитесь диагностировать уровень зрелости сотрудника по задаче — и выбирать нужный стиль</li>
-            <li>Разберёте собственные кейсы: почему одни подходы работали, а другие давали сбой</li>
-            <li>Получите инструмент для оценки готовности команды к делегированию</li>
-          </ul>
-        </div>
+    <div class="tools-intro fade-up">
+      <div class="tools-intro-label">Как это работает</div>
+      <div class="tools-intro-text">
+        <strong>Обсуждаем запрос → выбираем темы → собираем программу.</strong>
+        Длительность, глубина каждого блока и формат работы (очно, онлайн, корпоративный, открытая группа) определяются после диагностики. Каждый инструмент закрепляется практикой на реальных ситуациях участников.
       </div>
-      <div class="module-row fade-up">
-        <div class="module-num">02</div>
-        <div class="module-body">
-          <div class="module-meta">День 1 · Блок 2</div>
-          <div class="module-title">Мотивация по Герчикову</div>
-          <ul class="module-outcomes">
-            <li>Узнаете, почему деньги мотивируют не всех — и что важнее для каждого типа сотрудника</li>
-            <li>Освоите 4 мотивационных типа по Герчикову: инструментальный, профессиональный, патриотический, хозяйский</li>
-            <li>Научитесь диагностировать мотивационный профиль каждого члена команды</li>
-            <li>Разработаете индивидуальный подход к удержанию и вовлечённости для разных типов</li>
-            <li>Составите карту мотивации своей команды — практика на реальных данных</li>
-          </ul>
-        </div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-card fade-up">
+        <div class="tool-num">01</div>
+        <div class="tool-title">Ситуационное лидерство</div>
+        <div class="tool-desc">4 стиля управления — директивный, наставнический, поддерживающий, делегирующий. Как выбрать нужный под задачу и уровень сотрудника.</div>
       </div>
-      <div class="module-row fade-up">
-        <div class="module-num">03</div>
-        <div class="module-body">
-          <div class="module-meta">День 2 · Блок 3</div>
-          <div class="module-title">Развитие сотрудников и обратная связь</div>
-          <ul class="module-outcomes">
-            <li>Поймёте, как взрослые усваивают навыки — и как руководитель влияет на этот процесс</li>
-            <li>Освоите методы обучения на рабочем месте: разбор ситуаций, наставничество, OJT</li>
-            <li>Научитесь давать обратную связь, которая меняет поведение, а не создаёт защитную реакцию</li>
-            <li>Разберёте форматы проведения планёрок, разборов и индивидуальных встреч</li>
-            <li>Получите структуру сопровождения сотрудника от новичка до самостоятельности</li>
-          </ul>
-        </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">02</div>
+        <div class="tool-title">Мотивация по Герчикову</div>
+        <div class="tool-desc">Диагностика мотивационных типов команды. Почему деньги работают не для всех — и как найти ключ к каждому сотруднику.</div>
       </div>
-      <div class="module-row fade-up">
-        <div class="module-num">04</div>
-        <div class="module-body">
-          <div class="module-meta">День 2 · Блок 4</div>
-          <div class="module-title">Управление продажами и коучинг в поле</div>
-          <ul class="module-outcomes">
-            <li>Освоите пошаговый процесс управления продажами: от постановки целей до анализа результатов</li>
-            <li>Научитесь управлять воронкой продаж и прогнозировать выполнение плана</li>
-            <li>Поймёте, как проводить совместные визиты и разборы звонков, чтобы продавцы росли</li>
-            <li>Разберёте коучинговый подход к сотруднику: когда давать ответ, а когда задавать вопросы</li>
-            <li>Практика: разбор реальных ситуаций управления продажами участников</li>
-          </ul>
-        </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">03</div>
+        <div class="tool-title">Постановка целей</div>
+        <div class="tool-desc">SMART и OKR на практике. Как каскадировать цели компании до конкретных задач каждого члена команды.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">04</div>
+        <div class="tool-title">Делегирование</div>
+        <div class="tool-desc">Что, кому и когда передавать. Матрица делегирования, типичные ошибки и как перестать делать всё самому.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">05</div>
+        <div class="tool-title">Обратная связь</div>
+        <div class="tool-desc">Модели SBI и BOFF. Как давать ОС, которая меняет поведение, а не вызывает защитную реакцию.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">06</div>
+        <div class="tool-title">Управление конфликтами</div>
+        <div class="tool-desc">Стратегии деэскалации и разрешения конфликтов в команде. Как сохранить авторитет и результат одновременно.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">07</div>
+        <div class="tool-title">Коучинговый подход</div>
+        <div class="tool-desc">Модель GROW в работе с командой. Когда давать ответ, а когда задавать вопросы — и как это увеличивает самостоятельность сотрудников.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">08</div>
+        <div class="tool-title">Планирование и приоритеты</div>
+        <div class="tool-desc">Матрица Эйзенхауэра, фокус на результате. Как управлять временем и расставлять приоритеты в режиме постоянной перегрузки.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">09</div>
+        <div class="tool-title">Управление воронкой продаж</div>
+        <div class="tool-desc">От цифр — к действиям команды. Как читать воронку, прогнозировать результат и вовремя вмешиваться в процесс.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">10</div>
+        <div class="tool-title">Проведение встреч</div>
+        <div class="tool-desc">Структура планёрок, разборов и 1-on-1. Как сделать встречи короткими, конкретными и реально влияющими на результат.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">11</div>
+        <div class="tool-title">Найм и онбординг</div>
+        <div class="tool-desc">Как не потерять хорошего сотрудника в первые 90 дней. Структура адаптации и критерии прохождения испытательного срока.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">12</div>
+        <div class="tool-title">Развитие сотрудников</div>
+        <div class="tool-desc">Наставничество, OJT и индивидуальный план развития. Как системно растить людей внутри команды без отрыва от работы.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">13</div>
+        <div class="tool-title">Управление изменениями</div>
+        <div class="tool-desc">Как провести команду через реструктуризацию, смену процессов или новые требования — без потери вовлечённости и результата.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">14</div>
+        <div class="tool-title">Эмоциональный интеллект</div>
+        <div class="tool-desc">Самоуправление и эмпатия в роли руководителя. Как не сгореть самому и удерживать эмоциональный климат в команде.</div>
+      </div>
+      <div class="tool-card fade-up">
+        <div class="tool-num">15</div>
+        <div class="tool-title">Коучинг в поле</div>
+        <div class="tool-desc">Совместные визиты и разборы звонков. Как наблюдать за работой продавца и давать ОС так, чтобы он рос, а не оправдывался.</div>
       </div>
     </div>
   </section>
@@ -464,17 +506,17 @@
       <div class="stage-row">
         <div class="stage-cell label">Новый руководитель</div>
         <div class="stage-cell val">Впервые управляет командой, нет базы и уверенности</div>
-        <div class="stage-cell rec"><span class="rec-tag">Все 4 блока</span> Полная программа с нуля</div>
+        <div class="stage-cell rec"><span class="rec-tag">Фундамент</span> Лидерство, мотивация, делегирование, ОС</div>
       </div>
       <div class="stage-row">
         <div class="stage-cell label">Опытный менеджер</div>
         <div class="stage-cell val">Управляет давно, но интуитивно — нужна система</div>
-        <div class="stage-cell rec"><span class="rec-tag">Блоки 1 и 2</span> Лидерство и мотивация</div>
+        <div class="stage-cell rec"><span class="rec-tag">Точечно</span> Инструменты под конкретные зоны роста</div>
       </div>
       <div class="stage-row">
         <div class="stage-cell label">РОП / коммерческий директор</div>
         <div class="stage-cell val">Задача — рост продаж через развитие команды</div>
-        <div class="stage-cell rec"><span class="rec-tag">Блоки 3 и 4</span> Развитие и управление продажами</div>
+        <div class="stage-cell rec"><span class="rec-tag">Продажи</span> Воронка, коучинг в поле, ОС, планёрки</div>
       </div>
       <div class="stage-row">
         <div class="stage-cell label">Команда руководителей</div>
