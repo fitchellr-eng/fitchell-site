@@ -428,7 +428,9 @@
             padding: 16px 20px;
             border: 1px solid var(--border);
             border-radius: 12px;
-            background: rgba(137,101,224,0.04);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .about-cert-label {
@@ -501,8 +503,8 @@
         .programs-grid .program-card:nth-child(5) { grid-column: 4 / 6; }
 
         .program-card {
-            background: var(--bg-3);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 40px 36px;
             transition: all 0.3s ease;
@@ -510,6 +512,8 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .program-card::before {
@@ -743,11 +747,13 @@
         }
 
         .improviz-step {
-            background: var(--bg-2);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border);
             border-radius: 14px;
             padding: 20px;
             transition: all 0.25s;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .improviz-step:hover {
@@ -790,14 +796,16 @@
         }
 
         .testi-card {
-            background: var(--bg-3);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border);
             border-radius: 18px;
             padding: 28px;
             display: flex;
             flex-direction: column;
             gap: 16px;
             transition: all 0.3s;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .testi-card:hover {
@@ -876,10 +884,12 @@
         .why-card {
             text-align: center;
             padding: 36px 20px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
             border-radius: 16px;
             transition: all 0.3s;
-            background: var(--bg-2);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .why-card:hover {
@@ -925,8 +935,8 @@
         }
 
         .client-item {
-            background: var(--bg-3);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 18px 20px;
             text-align: center;
@@ -934,6 +944,8 @@
             font-size: 0.875rem;
             color: var(--muted);
             transition: all 0.2s;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .client-item:hover {
@@ -993,9 +1005,11 @@
 
         /* FORM */
         .form-card {
-            background: var(--bg-2);
+            background: rgba(0,0,0,0.45);
             border: 1px solid var(--border);
             border-radius: 24px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 44px;
         }
 
@@ -1227,19 +1241,20 @@
         #about          { background: rgba(0,0,0,0.55) !important; }
         .about-badge    { background: rgba(0,0,0,0.88) !important; }
         #programs       { background: rgba(0,0,0,0.65) !important; }
-        .program-card   { background: rgba(8,4,18,0.82) !important; }
+        /* Frosted glass cards — semi-transparent to show tubes through blur */
+        .program-card   { background: rgba(4,2,14,0.55) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important; }
         #process        { background: rgba(0,0,0,0.55) !important; }
         .process-circle { background: rgba(8,4,18,0.88) !important; }
         #improviz       { background: rgba(0,0,0,0.50) !important; }
-        .improviz-step  { background: rgba(8,4,18,0.75) !important; }
+        .improviz-step  { background: rgba(4,2,14,0.50) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important; }
         #testimonials   { background: rgba(0,0,0,0.65) !important; }
-        .testi-card     { background: rgba(8,4,18,0.82) !important; }
+        .testi-card     { background: rgba(4,2,14,0.50) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important; }
         #why            { background: rgba(0,0,0,0.50) !important; }
-        .why-card       { background: rgba(8,4,18,0.72) !important; }
+        .why-card       { background: rgba(4,2,14,0.50) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important; }
         #clients        { background: rgba(0,0,0,0.65) !important; }
-        .client-item    { background: rgba(8,4,18,0.75) !important; }
+        .client-item    { background: rgba(4,2,14,0.50) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important; }
         #contact        { background: rgba(0,0,0,0.50) !important; }
-        .form-card      { background: rgba(8,4,18,0.92) !important; }
+        .form-card      { background: rgba(4,2,14,0.60) !important; backdrop-filter: blur(16px) !important; -webkit-backdrop-filter: blur(16px) !important; }
         footer          { background: rgba(0,0,0,0.80) !important; }
         .marquee-wrap   { background: rgba(0,0,0,0.60) !important; }
         /* All sections above canvas */
