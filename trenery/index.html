@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тренинг для тренеров — Роберт Фитчелл</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #8965e0;
+      --a1:     #5e72e4;
+      --a2:     #8965e0;
+      --a3:     #f5365c;
+      --bg-2:   rgba(0,0,0,0.65);
+      --bg-3:   rgba(0,0,0,0.75);
+      --text:   #f0f0f0;
+      --muted:  #888888;
+      --border: rgba(137,101,224,0.2);
+      --grad:   linear-gradient(135deg, #5e72e4, #8965e0, #f5365c);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #04020e;
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+    }
+
+    /* ── TUBES ── */
+    #tubes-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; }
+    #tubes-canvas  { display: block; width: 100%; height: 100%; }
+    .tubes-overlay { position: fixed; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%); pointer-events: none; }
+    #tubes-loader  { position: fixed; inset: 0; z-index: 600; background: #04020e; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s; }
+    #tubes-loader.hidden { opacity: 0; pointer-events: none; }
+    #tubes-loader-dot { width: 8px; height: 8px; border-radius: 50%; background: #8965e0; animation: ldpulse 1s ease-in-out infinite; }
+    @keyframes ldpulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.8);opacity:0.4} }
+
+    /* ── CURSOR ── */
+    .cursor      { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
+    .cursor-ring { width: 40px; height: 40px; border: 1.5px solid rgba(137,101,224,0.7); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); }
+
+    /* ── LAYOUT ── */
+    nav, main, footer { position: relative; z-index: 2; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.72); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.04em; color: var(--gold); text-decoration: none; }
+    .nav-back  { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-back:hover { color: #fff; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-back svg { transition: transform 0.2s; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 120px 40px 80px; }
+    section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.02em; margin-bottom: 20px; color: #fff; }
+    .section-title .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 600px; }
+
+    /* ── HERO ── */
+    #hero { padding: 0 0 80px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(137,101,224,0.1); border: 1px solid var(--border); color: var(--gold); padding: 6px 16px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 28px; }
+    .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: .7; }
+    .hero-name { font-size: clamp(2.4rem, 5vw, 5rem); font-weight: 900; text-transform: uppercase; line-height: .92; letter-spacing: .02em; margin-bottom: 28px; color: #fff; text-shadow: 0 0 40px rgba(94,114,228,.5), 0 0 100px rgba(94,114,228,.25); }
+    .hero-name .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 640px; margin-bottom: 44px; }
+    .hero-stats { display: flex; gap: 48px; flex-wrap: wrap; }
+    .hero-stat-num { font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .hero-stat-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* ── ОПЫТ ── */
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 48px; }
+    .exp-card { background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+    .exp-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); opacity: 0; transition: opacity 0.3s; }
+    .exp-card:hover::before { opacity: 1; }
+    .exp-card:hover { border-color: rgba(137,101,224,0.4); transform: translateY(-3px); }
+    .exp-num { font-size: 2.8rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 10px; }
+    .exp-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .exp-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── ПРОГРАММА / ЧТО ПОЛУЧАТ ── */
+    .modules-list { margin-top: 52px; display: flex; flex-direction: column; gap: 16px; }
+    .module-row { display: grid; grid-template-columns: 56px 1fr; gap: 24px; align-items: start; background: rgba(0,0,0,0.45); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; backdrop-filter: blur(12px); transition: border-color 0.3s; }
+    .module-row:hover { border-color: rgba(137,101,224,0.4); }
+    .module-num { font-size: 1.3rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; padding-top: 2px; }
+    .module-body {}
+    .module-title { font-size: 0.95rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .module-meta { font-size: 0.72rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .module-outcomes { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .module-outcomes li { font-size: 0.83rem; color: var(--muted); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+    .module-outcomes li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, #5e72e4, #f5365c); margin-top: 6px; }
+
+    /* ── КОМУ ПОДОЙДЁТ ── */
+    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .aud-card { background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 32px 26px; backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.3s; }
+    .aud-card:hover { border-color: rgba(137,101,224,0.5); transform: translateY(-3px); }
+    .aud-num { font-size: 1rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; letter-spacing: 0.08em; }
+    .aud-title { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .aud-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+    .aud-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .aud-list li { font-size: 0.8rem; color: rgba(255,255,255,0.65); display: flex; gap: 8px; align-items: flex-start; }
+    .aud-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 0.75rem; margin-top: 1px; }
+
+    /* ── ПОЧЕМУ ИНАЧЕ ── */
+    .diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+    .diff-card { background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 30px 26px; backdrop-filter: blur(12px); transition: border-color 0.3s; }
+    .diff-card:hover { border-color: rgba(137,101,224,0.4); }
+    .diff-icon-num { font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; line-height: 1; opacity: 0.85; }
+    .diff-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .diff-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── ФОРМАТЫ ── */
+    .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .fmt-card { background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 30px 24px; backdrop-filter: blur(12px); position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .fmt-card.featured { border-color: rgba(137,101,224,0.45); }
+    .fmt-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); }
+    .fmt-card:hover { transform: translateY(-3px); border-color: rgba(137,101,224,0.45); }
+    .fmt-badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; background: rgba(137,101,224,0.15); border: 1px solid rgba(137,101,224,0.3); color: var(--gold); }
+    .fmt-title { font-size: 1rem; font-weight: 800; color: #fff; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.04em; }
+    .fmt-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+    .fmt-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .fmt-list li { font-size: 0.8rem; color: rgba(255,255,255,0.65); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+    .fmt-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* ── ЭТАПЫ / ПОЧЕМУ СЕЙЧАС ── */
+    .stages-wrap { margin-top: 52px; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .stage-row { display: grid; grid-template-columns: 180px 1fr 1fr; border-bottom: 1px solid var(--border); }
+    .stage-row:last-child { border-bottom: none; }
+    .stage-row.header .stage-cell { background: rgba(137,101,224,0.1); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; padding: 16px 24px; }
+    .stage-row.header .stage-cell:nth-child(3) { color: var(--gold); }
+    .stage-cell { padding: 18px 24px; border-right: 1px solid var(--border); font-size: 0.84rem; display: flex; align-items: center; background: rgba(0,0,0,0.2); }
+    .stage-cell:nth-child(even) { background: rgba(0,0,0,0.35); }
+    .stage-cell:last-child { border-right: none; }
+    .stage-cell.label { font-weight: 700; color: #fff; font-size: 0.85rem; }
+    .stage-cell.val { color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .stage-cell.rec { color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .rec-tag { display: inline-block; background: rgba(137,101,224,0.15); border: 1px solid rgba(137,101,224,0.3); color: var(--gold); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-right: 6px; }
+
+    /* ── ФОРМА ── */
+    #form-section { background: rgba(0,0,0,0.45); border-radius: 24px; padding: 56px 52px; border: 1px solid var(--border); backdrop-filter: blur(20px); margin-top: 80px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .form-input { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; transition: border-color 0.2s; outline: none; }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: rgba(255,255,255,0.2); }
+    .format-choice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .choice-opt { position: relative; }
+    .choice-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .choice-lbl { display: flex; flex-direction: column; gap: 3px; padding: 16px 18px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .choice-opt input:checked + .choice-lbl { border-color: var(--gold); background: rgba(137,101,224,0.12); }
+    .choice-lbl-title { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: #fff; }
+    .choice-lbl-sub   { font-size: 0.72rem; color: var(--muted); }
+    .btn-submit { margin-top: 28px; width: 100%; background: var(--grad); color: #fff; border: none; padding: 17px 36px; border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 24px rgba(94,114,228,.35); transition: opacity 0.2s, transform 0.2s; }
+    .btn-submit:hover { opacity: .88; transform: translateY(-2px); }
+    .form-note { text-align: center; margin-top: 16px; font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+    footer { padding: 32px 40px; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.2); border-top: 1px solid var(--border); }
+
+    /* ── FADE ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      main { padding: 100px 24px 60px; }
+      nav { padding: 16px 24px; }
+      .exp-grid, .diff-grid { grid-template-columns: 1fr; }
+      .audience-grid, .formats-grid { grid-template-columns: 1fr; }
+      .stage-row { grid-template-columns: 1fr; }
+      .stage-row.header .stage-cell:not(:first-child) { display: none; }
+      #form-section { padding: 36px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .format-choice { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="tubes-loader"><div id="tubes-loader-dot"></div></div>
+<div id="tubes-wrapper"><canvas id="tubes-canvas"></canvas></div>
+<div class="tubes-overlay"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="/" class="nav-logo">Роберт Фитчелл</a>
+  <a href="/" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Назад на сайт
+  </a>
+</nav>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-tag"><span></span>Тренинг для тренеров</div>
+    <h1 class="hero-name fade-up">
+      Мастерство<br>тренера — <span class="accent">изнутри</span>
+    </h1>
+    <p class="hero-desc fade-up">
+      Программа для тех, кто обучает других. Не теория о теории —
+      живая практика, инструменты импровизации и реальный опыт
+      18 лет в поле.
+    </p>
+    <div class="hero-stats fade-up">
+      <div><div class="hero-stat-num">18+</div><div class="hero-stat-label">Лет опыта</div></div>
+      <div><div class="hero-stat-num">10 000+</div><div class="hero-stat-label">Обученных людей</div></div>
+      <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Встреч · до 9 дней</div></div>
+    </div>
+  </section>
+
+  <!-- ── МОЙ ОПЫТ С ВЫГОДОЙ ── -->
+  <section id="experience">
+    <div class="section-label fade-up">Мой опыт — ваша выгода</div>
+    <h2 class="section-title fade-up">Вы получаете не<br>курс — вы получаете <span class="accent">практику</span></h2>
+    <p class="section-sub fade-up">Каждый инструмент программы — это то, что я применяю сам. Не адаптированная теория, а живой опыт, который работает в зале.</p>
+
+    <div class="exp-grid">
+      <div class="exp-card fade-up">
+        <div class="exp-num">18+</div>
+        <div class="exp-title">Лет в продажах и обучении</div>
+        <div class="exp-desc">Я не перешёл в тренинг из академии. Я пришёл из поля — и всё, чему учу, прошло проверку реальными результатами.</div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-num">10 000+</div>
+        <div class="exp-title">Участников тренингов</div>
+        <div class="exp-desc">За 14 лет тренерской практики я видел тысячи разных групп. Это даёт понимание людей, которое невозможно получить из книг.</div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-num">3 в 1</div>
+        <div class="exp-title">Тренер + Эксперт + Актёр</div>
+        <div class="exp-desc">Актёрское образование изменило мой подход к работе с группой. Я передаю эти инструменты тренерам — это даёт конкурентное преимущество.</div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-num">→</div>
+        <div class="exp-title">Вы не просто учитесь — вы растёте</div>
+        <div class="exp-desc">Программа построена так, что каждый участник получает обратную связь на свой конкретный уровень. Рост виден уже после первой встречи.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ПРОГРАММА / ЧТО ПОЛУЧАТ ── -->
+  <section id="program">
+    <div class="section-label fade-up">Программа</div>
+    <h2 class="section-title fade-up">5 встреч — полный<br><span class="accent">арсенал тренера</span></h2>
+    <p class="section-sub fade-up">Каждая встреча — завершённый блок с теорией, практикой и личной обратной связью.</p>
+
+    <div class="modules-list">
+      <div class="module-row fade-up">
+        <div class="module-num">01</div>
+        <div class="module-body">
+          <div class="module-meta">Встреча 1 · 2 дня</div>
+          <div class="module-title">ДНК тренинга. Как учатся взрослые</div>
+          <ul class="module-outcomes">
+            <li>Поймёте, чем обучение взрослых отличается от любого другого — и как это менять тренинг</li>
+            <li>Освоите цикл Колба: 4 стиля участников и как работать с каждым</li>
+            <li>Научитесь управлять вниманием, работоспособностью и памятью группы</li>
+            <li>Выстроите структуру тренинга, в которой ничего не теряется</li>
+            <li>Поймёте, как создавать и держать энергетику в зале</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-row fade-up">
+        <div class="module-num">02</div>
+        <div class="module-body">
+          <div class="module-meta">Встреча 2 · 2 дня</div>
+          <div class="module-title">Ролевой репертуар и импровизация</div>
+          <ul class="module-outcomes">
+            <li>Узнаете 8 ролей тренера и когда переключаться между ними</li>
+            <li>Получите инструменты импровизации для работы с непредвиденными ситуациями</li>
+            <li>Разберёте личный бренд тренера: из чего складывается и как выстраивать</li>
+            <li>Научитесь работать на стыке фасилитации и презентации</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-row fade-up">
+        <div class="module-num">03</div>
+        <div class="module-body">
+          <div class="module-meta">Встреча 3 · 2 дня</div>
+          <div class="module-title">Группа: динамика и сложные участники</div>
+          <ul class="module-outcomes">
+            <li>Научитесь читать стадии групповой динамики и управлять каждой</li>
+            <li>Получите конкретные стратегии для 7 типов сложных участников</li>
+            <li>Освоите ассертивное поведение тренера: твёрдость без конфликта</li>
+            <li>Поймёте, как работать с молодой аудиторией (поколение Z)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-row fade-up">
+        <div class="module-num">04</div>
+        <div class="module-body">
+          <div class="module-meta">Встреча 4 · 1 день</div>
+          <div class="module-title">Обратная связь и коучинговый подход</div>
+          <ul class="module-outcomes">
+            <li>Освоите формулу обратной связи, после которой участники меняются</li>
+            <li>Научитесь дебрифингу: разбирать упражнения так, чтобы навык закрепился</li>
+            <li>Получите инструменты коучинговых вопросов для работы в группе</li>
+            <li>Поймёте, когда фасилитировать, а когда переходить в индивидуальную работу</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-row fade-up">
+        <div class="module-num">05</div>
+        <div class="module-body">
+          <div class="module-meta">Встреча 5 · 2 дня</div>
+          <div class="module-title">Дизайн, результаты, аттестация</div>
+          <ul class="module-outcomes">
+            <li>Научитесь выявлять потребности в обучении и ставить трёхуровневые цели</li>
+            <li>Освоите декомпозицию результатов: бизнес → поведение → знания/навыки/установки</li>
+            <li>Разберёте посттренинг: форматы, инструменты, удержание результата</li>
+            <li>Оцените результаты по уровням Киркпатрика</li>
+            <li>Финальная аттестация: каждый проводит 20-минутный тренинговый блок с обратной связью</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── КОМУ ПОДОЙДЁТ ── -->
+  <section id="audience">
+    <div class="section-label fade-up">Кому подойдёт</div>
+    <h2 class="section-title fade-up">Три пути —<br>одна <span class="accent">программа</span></h2>
+
+    <div class="audience-grid">
+      <div class="aud-card fade-up">
+        <div class="aud-num">01</div>
+        <div class="aud-title">Индивидуальный тренер</div>
+        <div class="aud-desc">Фрилансер или начинающий специалист, который хочет выйти на новый уровень профессионализма и уверенности в зале.</div>
+        <ul class="aud-list">
+          <li>Хочет системно выстроить свои навыки</li>
+          <li>Ищет свой тренерский стиль и роль</li>
+          <li>Готовится к работе с корпоративными клиентами</li>
+          <li>Хочет отличаться от конкурентов</li>
+        </ul>
+      </div>
+      <div class="aud-card fade-up">
+        <div class="aud-num">02</div>
+        <div class="aud-title">Повышение квалификации</div>
+        <div class="aud-desc">Действующие тренеры компаний, которым нужны новые инструменты, свежий взгляд и работа над конкретными зонами роста.</div>
+        <ul class="aud-list">
+          <li>Опыт есть — хочется глубины и нового</li>
+          <li>Сложности с определёнными типами групп</li>
+          <li>Нужны инструменты измерения результатов</li>
+          <li>Интерес к импровизации и коучинговым методам</li>
+        </ul>
+      </div>
+      <div class="aud-card fade-up">
+        <div class="aud-num">03</div>
+        <div class="aud-title">Корпоративный заказ</div>
+        <div class="aud-desc">Компании, которые хотят вырастить внутренних тренеров или повысить качество обучения команды менеджеров.</div>
+        <ul class="aud-list">
+          <li>Создать внутренний T&D-отдел с нуля</li>
+          <li>Переобучить действующих тренеров компании</li>
+          <li>Повысить качество обучения менеджеров</li>
+          <li>Внедрить единый стандарт обучения</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ПОЧЕМУ РАБОТАЕТ ИНАЧЕ ── -->
+  <section id="difference">
+    <div class="section-label fade-up">Почему работает иначе</div>
+    <h2 class="section-title fade-up">Не академия —<br><span class="accent">живая практика</span></h2>
+
+    <div class="diff-grid">
+      <div class="diff-card fade-up">
+        <div class="diff-icon-num">01</div>
+        <div class="diff-title">Импровизация как профессиональный инструмент</div>
+        <div class="diff-desc">Техники театральной импровизации встроены в каждый модуль. Участники учатся думать и реагировать в моменте — это меняет работу с группой навсегда.</div>
+      </div>
+      <div class="diff-card fade-up">
+        <div class="diff-icon-num">02</div>
+        <div class="diff-title">Обратная связь на каждом шагу</div>
+        <div class="diff-desc">Не просто лекции — каждый участник проводит фрагменты тренинга и получает детальную обратную связь. Рост происходит через действие.</div>
+      </div>
+      <div class="diff-card fade-up">
+        <div class="diff-icon-num">03</div>
+        <div class="diff-title">Реальные ситуации, не кейсы из учебника</div>
+        <div class="diff-desc">Работаем с конкретными группами и задачами участников. Никаких абстрактных примеров — только то, с чем тренер сталкивается в своей работе.</div>
+      </div>
+      <div class="diff-card fade-up">
+        <div class="diff-icon-num">04</div>
+        <div class="diff-title">Опыт, который продолжает работать</div>
+        <div class="diff-desc">После программы — не просто сертификат. Участники уходят с конкретным планом развития и инструментами, которые применяют с первого рабочего дня.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ФОРМАТЫ ОБУЧЕНИЯ ── -->
+  <section id="formats">
+    <div class="section-label fade-up">Форматы обучения</div>
+    <h2 class="section-title fade-up">Выберите формат<br>под <span class="accent">свои задачи</span></h2>
+
+    <div class="formats-grid">
+      <div class="fmt-card fade-up">
+        <div class="fmt-badge">Индивидуальный</div>
+        <div class="fmt-title">Персональный трекинг</div>
+        <div class="fmt-sub">Для тренеров, которые хотят работать в своём темпе с индивидуальным вниманием.</div>
+        <ul class="fmt-list">
+          <li>Программа адаптируется под ваши зоны роста</li>
+          <li>Персональная обратная связь после каждого блока</li>
+          <li>Гибкий график встреч</li>
+          <li>Разбор ваших реальных тренингов</li>
+        </ul>
+      </div>
+      <div class="fmt-card featured fade-up">
+        <div class="fmt-badge">Открытая группа</div>
+        <div class="fmt-title">Групповой формат</div>
+        <div class="fmt-sub">Сборная группа тренеров из разных сфер. Максимум практики и обмена опытом.</div>
+        <ul class="fmt-list">
+          <li>До 12 участников в группе</li>
+          <li>Практика на участниках группы</li>
+          <li>Нетворкинг с коллегами из разных сфер</li>
+          <li>Общий чат сопровождения 1 месяц</li>
+        </ul>
+      </div>
+      <div class="fmt-card fade-up">
+        <div class="fmt-badge">Корпоративный</div>
+        <div class="fmt-title">Для команды компании</div>
+        <div class="fmt-sub">Программа для корпоративных тренеров или менеджеров, которых нужно научить обучать.</div>
+        <ul class="fmt-list">
+          <li>Адаптация под продукт и специфику компании</li>
+          <li>Работа с реальными задачами бизнеса</li>
+          <li>Аттестация по стандартам компании</li>
+          <li>Сопровождение внедрения после программы</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ЧТО ПОДОЙДЁТ НА КАЖДОМ ЭТАПЕ ── -->
+  <section id="stages">
+    <div class="section-label fade-up">Почему сейчас</div>
+    <h2 class="section-title fade-up">Что подойдёт<br>на <span class="accent">каждом этапе</span></h2>
+    <p class="section-sub fade-up">Программа работает на любом уровне — важно выбрать правильную точку входа.</p>
+
+    <div class="stages-wrap fade-up">
+      <div class="stage-row header">
+        <div class="stage-cell">Этап</div>
+        <div class="stage-cell">Ситуация</div>
+        <div class="stage-cell">Рекомендация</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-cell label">Начинающий тренер</div>
+        <div class="stage-cell val">Есть желание обучать, но нет системы и уверенности в зале</div>
+        <div class="stage-cell rec"><span class="rec-tag">Все 5 встреч</span> Полная программа с нуля</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-cell label">Опытный тренер</div>
+        <div class="stage-cell val">Уже работаете, но чувствуете потолок или хотите новых инструментов</div>
+        <div class="stage-cell rec"><span class="rec-tag">2–3 встречи</span> Точечная работа по выбранным блокам</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-cell label">Менеджер по обучению</div>
+        <div class="stage-cell val">Отвечаете за T&D в компании, нужно выстроить систему и стандарты</div>
+        <div class="stage-cell rec"><span class="rec-tag">Встречи 1, 4, 5</span> Дизайн и оценка результатов</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-cell label">Команда тренеров</div>
+        <div class="stage-cell val">Несколько тренеров компании с разным уровнем и задачами</div>
+        <div class="stage-cell rec"><span class="rec-tag">Корпоративный</span> Индивидуальная программа для команды</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ФОРМА ── -->
+  <div id="form-section" class="fade-up">
+    <div class="section-label">Оставить заявку</div>
+    <h2 class="section-title" style="margin-bottom:10px;">Обсудим вашу<br><span class="accent">программу</span></h2>
+    <p class="section-sub">Расчёт стоимости — индивидуальный. Свяжусь в течение 24 часов.</p>
+
+    <form class="form-grid" id="contactForm">
+      <div class="form-field">
+        <label class="form-label" for="name">Ваше имя</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Иван Иванов" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="phone">Телефон</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="company">Компания</label>
+        <input class="form-input" type="text" id="company" name="company" placeholder="Название (если корпоративный запрос)">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="role">Ваша роль</label>
+        <input class="form-input" type="text" id="role" name="role" placeholder="Тренер, HR, руководитель...">
+      </div>
+      <div class="form-field full">
+        <label class="form-label">Формат обучения</label>
+        <div class="format-choice">
+          <div class="choice-opt">
+            <input type="radio" id="f1" name="format" value="Индивидуальный" checked>
+            <label class="choice-lbl" for="f1">
+              <span class="choice-lbl-title">Индивидуальный</span>
+              <span class="choice-lbl-sub">Персональный трекинг</span>
+            </label>
+          </div>
+          <div class="choice-opt">
+            <input type="radio" id="f2" name="format" value="Открытая группа">
+            <label class="choice-lbl" for="f2">
+              <span class="choice-lbl-title">Открытая группа</span>
+              <span class="choice-lbl-sub">Сборный формат</span>
+            </label>
+          </div>
+          <div class="choice-opt">
+            <input type="radio" id="f3" name="format" value="Корпоративный">
+            <label class="choice-lbl" for="f3">
+              <span class="choice-lbl-title">Корпоративный</span>
+              <span class="choice-lbl-sub">Для команды компании</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-field full">
+        <label class="form-label" for="comment">Комментарий</label>
+        <textarea class="form-input" id="comment" name="comment" rows="3" placeholder="Расскажите о своей задаче или вопросе..." style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-field full">
+        <button type="submit" class="btn-submit">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+      </div>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 Роберт Фитчелл · <a href="/" style="color:inherit;text-decoration:none;">robertfitchell.ru</a>
+</footer>
+
+<script>
+  const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+  let rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
+    rx += (e.clientX - rx) * 0.12; ry += (e.clientY - ry) * 0.12;
+  });
+  setInterval(() => { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }, 16);
+</script>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+<script>
+  setTimeout(() => {
+    import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js')
+      .then(module => {
+        module.default(document.getElementById('tubes-canvas'), {
+          tubes: { colors: ["#5e72e4","#8965e0","#f5365c"], lights: { intensity: 200, colors: ["#21d4fd","#b721ff","#11cdef","#5e72e4"] } }
+        });
+        document.getElementById('tubes-loader').classList.add('hidden');
+      })
+      .catch(() => document.getElementById('tubes-loader').classList.add('hidden'));
+  }, 150);
+</script>
+
+</body>
+</html>
