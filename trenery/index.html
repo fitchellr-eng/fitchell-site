@@ -41,6 +41,17 @@
     #tubes-loader.hidden { opacity: 0; pointer-events: none; }
     #tubes-loader-dot { width: 8px; height: 8px; border-radius: 50%; background: #8965e0; animation: ldpulse 1s ease-in-out infinite; }
     @keyframes ldpulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.8);opacity:0.4} }
+    .color-flash {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      width: 200px; height: 200px; border-radius: 50%;
+      pointer-events: none; z-index: 5; opacity: 0;
+    }
+    .color-flash.active { animation: ripple 0.6s ease-out forwards; }
+    @keyframes ripple {
+      0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.15; }
+      100% { transform: translate(-50%,-50%) scale(8); opacity: 0; }
+    }
 
     /* ── CURSOR ── */
     .cursor      { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
@@ -197,6 +208,7 @@
 <div id="tubes-loader"><div id="tubes-loader-dot"></div></div>
 <div id="tubes-wrapper"><canvas id="tubes-canvas"></canvas></div>
 <div class="tubes-overlay"></div>
+<div class="color-flash" id="colorFlash"></div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -567,16 +579,38 @@
 </script>
 
 <script>
+  const PALETTES = [
+    { tubes: ["#5e72e4","#8965e0","#f5365c"], lights: ["#21d4fd","#b721ff","#11cdef","#5e72e4"] },
+    { tubes: ["#11cdef","#2dce89","#fb6340"], lights: ["#11cdef","#2dce89","#f7fafc","#fb6340"] },
+    { tubes: ["#f5365c","#fd7347","#ffd600"], lights: ["#f5365c","#fd7347","#ffd600","#ff3ea5"] },
+    { tubes: ["#2dce89","#2bffc6","#5e72e4"], lights: ["#2dce89","#2bffc6","#adb5bd","#5e72e4"] },
+    { tubes: ["#b721ff","#ff3ea5","#5e72e4"], lights: ["#b721ff","#ff3ea5","#21d4fd","#5e72e4"] },
+  ];
+  let paletteIndex = 0, tubesApp = null;
+  const flash = document.getElementById('colorFlash');
+
   setTimeout(() => {
     import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js')
       .then(module => {
-        module.default(document.getElementById('tubes-canvas'), {
-          tubes: { colors: ["#5e72e4","#8965e0","#f5365c"], lights: { intensity: 200, colors: ["#21d4fd","#b721ff","#11cdef","#5e72e4"] } }
+        tubesApp = module.default(document.getElementById('tubes-canvas'), {
+          tubes: { colors: PALETTES[0].tubes, lights: { intensity: 200, colors: PALETTES[0].lights } }
         });
         document.getElementById('tubes-loader').classList.add('hidden');
       })
       .catch(() => document.getElementById('tubes-loader').classList.add('hidden'));
   }, 150);
+
+  document.addEventListener('click', () => {
+    if (!tubesApp) return;
+    paletteIndex = (paletteIndex + 1) % PALETTES.length;
+    const p = PALETTES[paletteIndex];
+    tubesApp.tubes.setColors(p.tubes);
+    tubesApp.tubes.setLightsColors(p.lights);
+    flash.style.background = p.tubes[0];
+    flash.classList.remove('active');
+    void flash.offsetWidth;
+    flash.classList.add('active');
+  });
 </script>
 
 </body>
