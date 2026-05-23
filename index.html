@@ -146,6 +146,24 @@
 
         .nav-cta:hover { opacity: .85 !important; transform: translateY(-1px); }
 
+        .nav-social {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 9px;
+            background: rgba(137,101,224,0.12); border: 1px solid var(--border);
+            color: rgba(255,255,255,0.55); transition: background 0.2s, color 0.2s, border-color 0.2s;
+            text-decoration: none;
+        }
+        .nav-social:hover { background: rgba(137,101,224,0.28); color: #fff; border-color: rgba(137,101,224,0.45); }
+
+        .footer-social {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(137,101,224,0.1); border: 1px solid var(--border);
+            border-radius: 9px; padding: 7px 14px;
+            color: var(--muted); font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .footer-social:hover { background: rgba(137,101,224,0.22); color: #fff; border-color: rgba(137,101,224,0.4); }
+
         /* ── HERO ── */
         #hero {
             min-height: 100vh;
@@ -1335,6 +1353,16 @@
         <li><a href="#programs">Программы</a></li>
         <li><a href="#testimonials">Отзывы</a></li>
         <li><a href="#clients">Клиенты</a></li>
+        <li>
+          <a href="https://instagram.com/fitchellr" class="nav-social" target="_blank" rel="noopener" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://t.me/RobertFitchell" class="nav-social" target="_blank" rel="noopener" title="Telegram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </a>
+        </li>
         <li><a href="#contact" class="nav-cta">Оставить заявку</a></li>
     </ul>
 </nav>
@@ -1847,6 +1875,14 @@
         <a href="#programs">Программы</a>
         <a href="#clients">Клиенты</a>
         <a href="#contact">Контакты</a>
+        <a href="https://instagram.com/fitchellr" class="footer-social" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="https://t.me/RobertFitchell" class="footer-social" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          Telegram
+        </a>
     </div>
     <div class="footer-copy">© 2025 Роберт Фитчелл. Бизнес-тренер</div>
     <div class="footer-legal">
