@@ -23,7 +23,8 @@
             --border: rgba(137,101,224,0.2);
         }
 
-        html { scroll-behavior: smooth; overflow-x: clip; }
+        html { scroll-behavior: smooth; }
+        html, body { overflow-x: hidden; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -373,9 +374,24 @@
             font-weight: 500;
         }
 
+        /* ── PAGE WRAP — clips all horizontal overflow ── */
+        #page-wrap {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
         /* ── SECTION COMMONS ── */
-        section { padding: 100px 60px; overflow-x: hidden; }
-        nav, #hero, #stats, footer { overflow-x: hidden; }
+        section { padding: 100px 60px; }
+        nav, #hero, #stats, footer { }
+
+        /* Grid children: prevent min-width:auto from expanding grids */
+        .hero-grid > *, .about-grid > *, .programs-grid > *,
+        .stats-grid > *, .why-grid > *, .clients-grid > *,
+        .improviz-grid > *, .testimonials-grid > *, .testi-grid > * {
+            min-width: 0;
+        }
 
         .container { max-width: 1200px; margin: 0 auto; }
 
@@ -1410,6 +1426,9 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- PAGE WRAP — prevents horizontal overflow without breaking position:fixed -->
+<div id="page-wrap">
+
 <!-- NAV -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">Роберт Фитчелл</a>
@@ -2104,5 +2123,6 @@
     });
 </script>
 
+</div><!-- /page-wrap -->
 </body>
 </html>
