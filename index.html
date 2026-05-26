@@ -1157,13 +1157,15 @@
             background: var(--bg-2);
             border-top: 1px solid var(--border);
             padding: 32px 60px 24px;
+            overflow: hidden;
         }
 
         .footer-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
             margin-bottom: 20px;
         }
 
@@ -1172,7 +1174,6 @@
             font-weight: 800;
             color: var(--gold);
             white-space: nowrap;
-            flex-shrink: 0;
         }
 
         .footer-links {
@@ -1196,14 +1197,15 @@
             display: flex;
             gap: 10px;
             align-items: center;
-            flex-shrink: 0;
+            flex-wrap: wrap;
         }
 
         .footer-bottom {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
             padding-top: 16px;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
@@ -1281,10 +1283,7 @@
             .clients-grid { grid-template-columns: repeat(2, 1fr); }
 
             footer { padding: 28px 24px; }
-            .footer-top { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .footer-links { flex-direction: column; gap: 12px; }
-            .footer-socials { flex-wrap: wrap; gap: 10px; }
+            .footer-top { justify-content: flex-start; }
             .form-row { grid-template-columns: 1fr; }
         }
 
@@ -1315,9 +1314,10 @@
             .form-card { padding: 24px 16px; }
             .form-row { grid-template-columns: 1fr; }
 
-            .footer-top { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
             footer { padding: 24px 16px 20px; }
+            .footer-top { flex-direction: column; align-items: flex-start; gap: 14px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .footer-links { gap: 12px; }
         }
 
         @media (max-width: 375px) {
