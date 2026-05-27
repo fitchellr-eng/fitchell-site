@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности — Роберт Фитчелл</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #d4a84b;
+      --text:   #f0f0f0;
+      --muted:  #999999;
+      --border: rgba(212,168,75,0.2);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #04020e;
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(4,2,14,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .doc-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+    .doc-meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 48px;
+    }
+
+    .doc-section {
+      margin-bottom: 36px;
+    }
+    .doc-section-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p.clause {
+      font-size: 0.87rem;
+      color: rgba(240,240,240,0.85);
+      margin-bottom: 10px;
+    }
+    p.clause:last-child { margin-bottom: 0; }
+    p.clause strong { color: #fff; font-weight: 700; }
+
+    ul.clause-list {
+      list-style: none;
+      margin: 8px 0 12px;
+      padding: 0;
+    }
+    ul.clause-list li {
+      font-size: 0.87rem;
+      color: rgba(240,240,240,0.85);
+      padding: 6px 0 6px 18px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    ul.clause-list li:last-child { border-bottom: none; }
+    ul.clause-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+    }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 480px) {
+      nav { padding: 14px 16px; }
+      main { padding: 40px 16px 60px; }
+    }
+  </style>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109423466','ym');
+    ym(109423466,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109423466" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">Роберт Фитчелл</a>
+  <a href="/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Назад
+  </a>
+</nav>
+
+<main>
+  <h1 class="doc-title">Политика конфиденциальности</h1>
+  <p class="doc-meta">г. Уфа &nbsp;·&nbsp; Редакция от 14.05.2026</p>
+
+  <div class="doc-section">
+    <div class="doc-section-title">1. Общие положения</div>
+    <p class="clause"><strong>1.1.</strong> Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок обработки персональных данных пользователей сайта и разработана в соответствии с требованиями Федерального закона № 152-ФЗ «О персональных данных».</p>
+    <p class="clause"><strong>1.2.</strong> Оператором персональных данных является физическое лицо — самозанятый: Ахметгареев Роберт Рамзилевич (псевдоним: Роберт Фитчелл), ИНН 027502395090, г. Уфа, Республика Башкортостан.</p>
+    <p class="clause"><strong>1.3.</strong> Используя сайт или оставляя заявку, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны с её условиями — пожалуйста, прекратите использование сайта.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">2. Какие данные мы собираем</div>
+    <p class="clause">При заполнении форм на сайте мы можем собирать следующие персональные данные:</p>
+    <ul class="clause-list">
+      <li>Фамилия, имя, отчество</li>
+      <li>Номер телефона</li>
+      <li>Адрес электронной почты</li>
+      <li>Название компании (при наличии)</li>
+      <li>Информация, добровольно предоставленная в текстовых полях формы</li>
+    </ul>
+    <p class="clause">Также автоматически могут собираться технические данные: IP-адрес, тип браузера, страницы посещения — исключительно в аналитических целях через сервис Яндекс.Метрика.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">3. Цели обработки данных</div>
+    <p class="clause">Ваши персональные данные используются исключительно для:</p>
+    <ul class="clause-list">
+      <li>Обработки заявок на участие в тренингах и консультациях</li>
+      <li>Связи с вами по вопросам оказания услуг</li>
+      <li>Направления чеков и договорной документации</li>
+      <li>Информирования об актуальных программах обучения (при наличии согласия)</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">4. Правовое основание обработки</div>
+    <p class="clause"><strong>4.1.</strong> Обработка персональных данных осуществляется на основании вашего согласия, выраженного при заполнении формы заявки или акцепте публичной оферты.</p>
+    <p class="clause"><strong>4.2.</strong> В случаях, предусмотренных законодательством РФ, обработка может осуществляться без согласия пользователя.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">5. Хранение и защита данных</div>
+    <p class="clause"><strong>5.1.</strong> Персональные данные хранятся не дольше, чем этого требуют цели их обработки, если иное не предусмотрено законодательством РФ.</p>
+    <p class="clause"><strong>5.2.</strong> Мы принимаем необходимые организационные и технические меры для защиты персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+    <p class="clause"><strong>5.3.</strong> Данные не передаются третьим лицам без вашего согласия, за исключением случаев, прямо предусмотренных законодательством Российской Федерации.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">6. Ваши права</div>
+    <p class="clause">В соответствии с Федеральным законом № 152-ФЗ вы вправе:</p>
+    <ul class="clause-list">
+      <li>Получить информацию об обработке ваших персональных данных</li>
+      <li>Потребовать уточнения, блокировки или уничтожения ваших данных</li>
+      <li>Отозвать согласие на обработку персональных данных в любое время</li>
+      <li>Обжаловать действия оператора в Роскомнадзоре</li>
+    </ul>
+    <p class="clause">Для реализации своих прав направьте запрос на электронную почту: <a href="mailto:Fitchellr@gmail.com" style="color:var(--gold);text-decoration:none;">Fitchellr@gmail.com</a></p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">7. Cookies и аналитика</div>
+    <p class="clause"><strong>7.1.</strong> Сайт использует файлы cookie для корректной работы и сбора аналитических данных через сервис Яндекс.Метрика.</p>
+    <p class="clause"><strong>7.2.</strong> Вы можете отключить использование cookie в настройках вашего браузера, однако это может повлиять на работу отдельных функций сайта.</p>
+    <p class="clause"><strong>7.3.</strong> Яндекс.Метрика обрабатывает данные в соответствии с политикой конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">yandex.ru/legal/confidential</a></p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">8. Изменение политики</div>
+    <p class="clause">Оператор вправе вносить изменения в настоящую Политику. Новая редакция вступает в силу с момента её публикации на сайте. Продолжение использования сайта после публикации изменений означает ваше согласие с новой редакцией.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">9. Контактные данные</div>
+    <p class="clause">По всем вопросам, связанным с обработкой персональных данных, обращайтесь:</p>
+    <ul class="clause-list">
+      <li>Email: Fitchellr@gmail.com</li>
+      <li>Телефон: +7 917 79 55 239</li>
+      <li>Telegram: <a href="https://t.me/RobertFitchell" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">@RobertFitchell</a></li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  © 2026 Роберт Фитчелл &nbsp;·&nbsp; <a href="/">На главную</a> &nbsp;·&nbsp; <a href="/oferta.html">Публичная оферта</a>
+</footer>
+
+</body>
+</html>
