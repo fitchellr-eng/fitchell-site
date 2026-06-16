@@ -1911,7 +1911,7 @@
                 <div class="form-card">
                     <div class="form-title">Оставить заявку</div>
                     <div class="form-sub">Заполните форму и я перезвоню вам в удобное время</div>
-                    <form id="contact-form" action="https://formspree.io/f/xgoqojqn" method="POST">
+                    <form id="contact-form" action="https://CHANGE-ME.functions.yandexcloud.net/" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Ваше имя *</label>
@@ -1942,8 +1942,11 @@
                             <label for="message">Комментарий</label>
                             <textarea id="message" name="message" placeholder="Опишите задачу или вопрос — помогу подобрать лучший формат..."></textarea>
                         </div>
+                        <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+                          <input type="checkbox" id="consent" name="consent" required style="margin-top:3px;flex-shrink:0;">
+                          <span>Я даю согласие на обработку моих персональных данных в соответствии с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a></span>
+                        </label>
                         <button type="submit" class="btn-submit" id="submit-btn">Отправить заявку →</button>
-                        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
                     </form>
                 </div>
             </div>
@@ -2053,10 +2056,14 @@
         btn.disabled = true;
 
         try {
+            const fd = new FormData(e.target);
+            const payload = Object.fromEntries(fd.entries());
+            payload.consent = e.target.consent.checked;
+            payload.page = location.href;
             const res = await fetch(e.target.action, {
                 method: 'POST',
-                body: new FormData(e.target),
-                headers: { 'Accept': 'application/json' }
+                body: JSON.stringify(payload),
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
             });
             if (res.ok) {
                 btn.textContent = '✓ Заявка отправлена!';
