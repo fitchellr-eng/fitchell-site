@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Публичная оферта — Роберт Фитчелл</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts.css">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --gold: #d4a84b;
-            --bg: #080808;
-            --bg-2: #111111;
+            --gold: #8965e0;
+            --bg: #04020e;
+            --bg-2: rgba(0,0,0,0.5);
             --text: #f0f0f0;
             --muted: #888888;
-            --border: rgba(212,168,75,0.15);
+            --border: rgba(137,101,224,0.2);
         }
 
         body {
@@ -139,7 +138,7 @@
             font-size: 0.875rem;
         }
         .programs-table th {
-            background: rgba(212,168,75,0.08);
+            background: rgba(137,101,224,0.08);
             color: var(--gold);
             padding: 12px 16px;
             text-align: left;
@@ -171,17 +170,21 @@
             margin: 40px 0;
         }
 
-        footer {
-            background: var(--bg-2);
-            border-top: 1px solid var(--border);
-            padding: 32px 60px;
-            text-align: center;
-        }
-        footer p {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin: 0;
-        }
+        footer { background: rgba(0,0,0,0.5); border-top: 1px solid var(--border); padding: 32px 40px 24px; overflow: hidden; }
+        .footer-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:20px; }
+        .footer-brand { font-size:1rem; font-weight:800; color:var(--gold); white-space:nowrap; }
+        .footer-links { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+        .footer-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color .2s; white-space:nowrap; }
+        .footer-links a:hover { color:var(--gold); }
+        .footer-socials { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+        .footer-social { display:inline-flex; align-items:center; gap:7px; background:rgba(137,101,224,0.1); border:1px solid var(--border); border-radius:9px; padding:7px 14px; color:var(--muted); font-size:0.8rem; font-weight:600; text-decoration:none; transition:background .2s,color .2s,border-color .2s; }
+        .footer-social:hover { background:rgba(137,101,224,0.22); color:#fff; border-color:rgba(137,101,224,0.4); }
+        .footer-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); }
+        .footer-copy { color:rgba(136,136,136,0.6); font-size:0.78rem; }
+        .footer-legal { font-size:0.72rem; color:rgba(136,136,136,0.45); display:flex; gap:20px; flex-wrap:wrap; }
+        .footer-legal a { color:rgba(136,136,136,0.45); text-decoration:none; transition:color .2s; }
+        .footer-legal a:hover { color:var(--gold); }
+        @media(max-width:600px){ footer{padding:24px 20px 20px;} .footer-top{flex-direction:column;align-items:flex-start;gap:14px;} .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;} }
 
         @media (max-width: 768px) {
             header { padding: 16px 20px; }
@@ -351,8 +354,32 @@
 </main>
 
 <footer>
-    <p>© 2026 Ахметгареев Р.Р. &nbsp;·&nbsp; Роберт Фитчелл &nbsp;·&nbsp; ИНН 027502395090 &nbsp;·&nbsp; Самозанятый &nbsp;·&nbsp; <a href="index.html" style="color: var(--muted); text-decoration: none;">robertfitchell.ru</a></p>
+    <div class="footer-top">
+        <div class="footer-brand">Роберт Фитчелл</div>
+        <div class="footer-links">
+            <a href="/#about">Обо мне</a>
+            <a href="/#programs">Программы</a>
+            <a href="/#clients">Клиенты</a>
+            <a href="/#contact">Контакты</a>
+        </div>
+        <div class="footer-socials">
+            <a href="https://t.me/RobertFitchell" class="footer-social" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+                Telegram
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Ахметгареев Р.Р. · Роберт Фитчелл. Бизнес-тренер</div>
+        <div class="footer-legal">
+            <span>ИНН 027502395090</span>
+            <a href="/oferta.html">Публичная оферта</a>
+            <a href="/privacy.html">Политика конфиденциальности</a>
+            <a href="/soglasie.html">Согласие на обработку ПДн</a>
+        </div>
+    </div>
 </footer>
 
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>
