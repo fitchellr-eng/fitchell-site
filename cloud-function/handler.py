@@ -15,12 +15,16 @@ SMTP Яндекса (smtp.yandex.ru — серверы в РФ).
 import json
 import os
 import smtplib
+import logging
 from email.mime.text import MIMEText
 from email.header import Header
 
 FIELDS = ["name", "surname", "phone", "company", "program", "city", "message", "page"]
 
-_ALLOW = [o.strip() for o in os.environ.get("ALLOW_ORIGIN", "*").split(",")]
+MAX_LEN = 2000  # максимальная длина одного поля (анти-DoS)
+
+_DEFAULT_ORIGINS = "https://robertfitchell.ru,https://robertfitchell.online"
+_ALLOW = [o.strip() for o in os.environ.get("ALLOW_ORIGIN", _DEFAULT_ORIGINS).split(",")]
 
 
 def _cors_origin(req_origin):
@@ -52,24 +56,23 @@ def handler(event, context):
         return _resp(405, {"ok": False, "error": "method not allowed"}, req_origin)
 
     raw = event.get("body", "") or ""
-    if event.get("isBase64Encoded"):
-        import base64
-        raw = base64.b64decode(raw).decode("utf-8")
-
     try:
+        if event.get("isBase64Encoded"):
+            import base64
+            raw = base64.b64decode(raw).decode("utf-8")
         data = json.loads(raw)
     except Exception:
-        return _resp(400, {"ok": False, "error": "bad json"}, req_origin)
+        return _resp(400, {"ok": False, "error": "bad request"}, req_origin)
 
     if not data.get("consent"):
         return _resp(400, {"ok": False, "error": "consent required"}, req_origin)
 
-    name = str(data.get("name", "")).strip()
-    phone = str(data.get("phone", "")).strip()
+    name = str(data.get("name", "")).strip()[:MAX_LEN]
+    phone = str(data.get("phone", "")).strip()[:MAX_LEN]
     if not name or not phone:
         return _resp(400, {"ok": False, "error": "name and phone required"}, req_origin)
 
-    page = str(data.get("page", req_origin)).strip()
+    page = str(data.get("page", req_origin)).strip()[:MAX_LEN]
     lines = [f"Страница: {page}", ""]
     labels = {
         "name": "Имя", "surname": "Фамилия", "phone": "Телефон",
@@ -77,7 +80,7 @@ def handler(event, context):
         "city": "Город", "message": "Комментарий",
     }
     for f in FIELDS[:-1]:
-        v = str(data.get(f, "")).strip()
+        v = str(data.get(f, "")).strip()[:MAX_LEN]
         if v:
             lines.append(f"{labels.get(f, f)}: {v}")
     lines.append("Согласие на ПДн: да")
@@ -96,6 +99,7 @@ def handler(event, context):
             s.login(user, os.environ["SMTP_PASS"])
             s.sendmail(user, [os.environ["MAIL_TO"]], msg.as_string())
     except Exception as exc:
-        return _resp(502, {"ok": False, "error": f"mail failed: {exc}"}, req_origin)
+        logging.exception("mail send failed: %s", exc)
+        return _resp(502, {"ok": False, "error": "mail failed"}, req_origin)
 
     return _resp(200, {"ok": True}, req_origin)
