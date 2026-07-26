@@ -995,6 +995,38 @@
             color: var(--text);
         }
 
+        .clients-marquee {
+            position: relative;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        }
+        .clients-marquee:hover .clients-marquee-track { animation-play-state: paused; }
+        .clients-marquee-track {
+            display: flex;
+            gap: 14px;
+            width: max-content;
+            animation: clients-scroll 45s linear infinite;
+        }
+        .client-chip {
+            white-space: nowrap;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 14px 26px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--muted);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .client-chip:hover { color: var(--text); border-color: rgba(137,101,224,0.4); }
+        @keyframes clients-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
         /* ── CONTACT ── */
         #contact { background: var(--bg); }
 
@@ -1668,12 +1700,22 @@
                     <span class="format-tag">3–7 дней</span>
                     <span class="format-tag">Под бизнес</span>
                 </div>
+                <a href="/audit" class="program-link">
+                    Подробнее о программе
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
             </div>
             <div class="program-card fade-up">
                 <div class="program-num">05</div>
                 <h3 class="program-title">Построение отдела продаж</h3>
-                <p class="program-desc">Создам отдел продаж с нуля или перестрою существующий. Найм, регламенты, метрики, CRM — всё под ключ. Результат: команда, которая продаёт системно.</p>
+                <p class="program-desc">Работаю с отделом как с единой системой: обучаю всю команду <strong>вместе с руководителем</strong>. Менеджеры получают навык, РОП — инструменты, чтобы его удерживать, и результат не рассыпается после тренинга. А ещё построю отдел с нуля или перестрою существующий — найм, регламенты, метрики.</p>
                 <ul class="program-features">
+                    <li>Обучение всей команды вместе с руководителем</li>
                     <li>Структура и найм менеджеров</li>
                     <li>Регламенты и стандарты работы</li>
                     <li>Настройка KPI и метрик</li>
@@ -1681,6 +1723,7 @@
                     <li>Запуск и сопровождение команды</li>
                 </ul>
                 <div class="program-formats">
+                    <span class="format-tag">Отдел + руководитель</span>
                     <span class="format-tag">Под ключ</span>
                     <span class="format-tag">1–3 месяца</span>
                     <span class="format-tag">Сопровождение</span>
@@ -1895,19 +1938,33 @@
             <div class="section-label">Клиенты</div>
             <h2 class="section-title">Работал с лидерами рынка</h2>
         </div>
-        <div class="clients-grid">
-            <div class="client-item fade-up">Shiseido</div>
-            <div class="client-item fade-up">Amway</div>
-            <div class="client-item fade-up">Davines</div>
-            <div class="client-item fade-up">Atomy</div>
-            <div class="client-item fade-up">Л'Этуаль</div>
-            <div class="client-item fade-up">Рив Гош</div>
-            <div class="client-item fade-up">Магнит Косметик</div>
-            <div class="client-item fade-up">Иль Де Боте</div>
-            <div class="client-item fade-up">Greenway</div>
-            <div class="client-item fade-up">Империя Сумок</div>
-            <div class="client-item fade-up">Alpari</div>
-            <div class="client-item fade-up">Центр онлайн-образования Азата Валеева</div>
+        <div class="clients-marquee fade-up">
+            <div class="clients-marquee-track">
+                <div class="client-chip">Shiseido</div>
+                <div class="client-chip">Amway</div>
+                <div class="client-chip">Davines</div>
+                <div class="client-chip">Atomy</div>
+                <div class="client-chip">Л'Этуаль</div>
+                <div class="client-chip">Рив Гош</div>
+                <div class="client-chip">Магнит Косметик</div>
+                <div class="client-chip">Иль Де Боте</div>
+                <div class="client-chip">Greenway</div>
+                <div class="client-chip">Империя Сумок</div>
+                <div class="client-chip">Alpari</div>
+                <div class="client-chip">Центр онлайн-образования Азата Валеева</div>
+                <div class="client-chip" aria-hidden="true">Shiseido</div>
+                <div class="client-chip" aria-hidden="true">Amway</div>
+                <div class="client-chip" aria-hidden="true">Davines</div>
+                <div class="client-chip" aria-hidden="true">Atomy</div>
+                <div class="client-chip" aria-hidden="true">Л'Этуаль</div>
+                <div class="client-chip" aria-hidden="true">Рив Гош</div>
+                <div class="client-chip" aria-hidden="true">Магнит Косметик</div>
+                <div class="client-chip" aria-hidden="true">Иль Де Боте</div>
+                <div class="client-chip" aria-hidden="true">Greenway</div>
+                <div class="client-chip" aria-hidden="true">Империя Сумок</div>
+                <div class="client-chip" aria-hidden="true">Alpari</div>
+                <div class="client-chip" aria-hidden="true">Центр онлайн-образования Азата Валеева</div>
+            </div>
         </div>
     </div>
 </section>
