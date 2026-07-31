@@ -406,7 +406,7 @@
     }
     .compare-row {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1.1fr 1fr 1fr 1fr;
       border-bottom: 1px solid var(--border);
     }
     .compare-row:last-child { border-bottom: none; }
@@ -425,6 +425,10 @@
     }
     .compare-row.header .compare-cell:nth-child(3) {
       color: var(--gold);
+      background: rgba(137,101,224,0.2);
+    }
+    .compare-row:not(.header) .compare-cell:nth-child(3) {
+      background: rgba(137,101,224,0.08) !important;
     }
     .compare-row:not(.header):nth-child(even) .compare-cell {
       background: rgba(0,0,0,0.3);
@@ -554,8 +558,8 @@
       main { padding: 100px 24px 60px; }
       nav { padding: 16px 24px; }
       .programs-wrap { grid-template-columns: 1fr; }
-      .compare-row { grid-template-columns: 1fr 1fr 1fr; }
-      .compare-cell { padding: 14px 14px; font-size: 0.78rem; }
+      .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
+      .compare-cell { padding: 12px 9px; font-size: 0.72rem; }
       #form-section { padding: 36px 24px; }
       .form-grid { grid-template-columns: 1fr; }
       .form-field.full { grid-column: 1; }
@@ -813,46 +817,55 @@
       <div class="compare-row header">
         <div class="compare-cell"></div>
         <div class="compare-cell">1 день — Быстрый старт</div>
+        <div class="compare-cell">1 день + поддержка</div>
         <div class="compare-cell">2 дня — Трансформация</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Теория</div>
+        <div class="compare-cell val"><span class="check">✓</span> Полная</div>
         <div class="compare-cell val"><span class="check">✓</span> Полная</div>
         <div class="compare-cell val-pro"><span class="check">✓</span> Полная + углублённая</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Практика</div>
         <div class="compare-cell val"><span class="check">✓</span> Базовая отработка</div>
+        <div class="compare-cell val"><span class="check">✓</span> Базовая отработка</div>
         <div class="compare-cell val-pro"><span class="check">✓</span> Глубокая, многократная</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Ролевые игры</div>
+        <div class="compare-cell val">2–3 упражнения</div>
         <div class="compare-cell val">2–3 упражнения</div>
         <div class="compare-cell val-pro">5–7 упражнений с разными сценариями</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Скрипты</div>
         <div class="compare-cell val"><span class="check">✓</span> Готовые скрипты</div>
+        <div class="compare-cell val"><span class="check">✓</span> Готовые скрипты</div>
         <div class="compare-cell val-pro"><span class="check">✓</span> Скрипты + практика адаптации</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Обратная связь</div>
         <div class="compare-cell val">Групповая</div>
+        <div class="compare-cell val">Групповая</div>
         <div class="compare-cell val-pro">Индивидуальная для каждого</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Поддержка после</div>
-        <div class="compare-cell val">Чат 1 месяц</div>
+        <div class="compare-cell val">—</div>
+        <div class="compare-cell val"><span class="check">✓</span> Чат 1 месяц</div>
         <div class="compare-cell val-pro">Чат + индивидуальные консультации</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Закрепление навыков</div>
         <div class="compare-cell val">Хорошее</div>
+        <div class="compare-cell val">Хорошее+</div>
         <div class="compare-cell val-pro">Отличное — устойчивые изменения</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Стоимость</div>
         <div class="compare-cell val">120 000 ₽</div>
+        <div class="compare-cell val">150 000 ₽</div>
         <div class="compare-cell val-pro">220 000 ₽</div>
       </div>
     </div>
