@@ -2012,9 +2012,13 @@
                             <label for="message">Комментарий</label>
                             <textarea id="message" name="message" placeholder="Опишите задачу или вопрос — помогу подобрать лучший формат..."></textarea>
                         </div>
-                        <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+                        <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;margin-bottom:8px;cursor:pointer;">
                           <input type="checkbox" id="consent" name="consent" required style="margin-top:3px;flex-shrink:0;">
-                          <span>Я даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">Политику конфиденциальности</a></span>
+                          <span>Я даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
+                        </label>
+                        <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+                          <input type="checkbox" id="privacy-accept" name="privacyAccept" required style="margin-top:3px;flex-shrink:0;">
+                          <span>Я принимаю <a href="privacy.html" target="_blank" rel="noopener">Политику конфиденциальности</a></span>
                         </label>
                         <button type="submit" class="btn-submit" id="submit-btn">Отправить заявку →</button>
                     </form>
