@@ -2139,6 +2139,13 @@
             const payload = Object.fromEntries(fd.entries());
             payload.consent = e.target.consent.checked;
             payload.page = location.href;
+            // подтверждение согласия: точные формулировки обеих галочек и редакция документов
+            payload.consentText = [e.target.consent, e.target.privacyAccept]
+                .map(box => box && box.closest('label'))
+                .filter(Boolean)
+                .map(label => label.textContent.replace(/\s+/g, ' ').trim())
+                .join(' + ');
+            payload.docsVersion = '2026-08-31';
             const res = await fetch(e.target.action, {
                 method: 'POST',
                 body: JSON.stringify(payload),

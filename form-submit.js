@@ -5,6 +5,19 @@
 (function () {
   var ENDPOINT = 'https://functions.yandexcloud.net/d4e0bieu6ein4udol75t';
 
+  /* Дата редакции Политики и Согласия. Меняем её при каждой правке документов —
+     она уходит в письмо, чтобы было видно, под какой редакцией человек подписался. */
+  var DOCS_VERSION = '2026-08-31';
+
+  /* Текст, под которым стоял чекбокс: берём прямо со страницы, а не из константы,
+     чтобы в письме была ровно та формулировка, которую человек видел. */
+  function consentText(form) {
+    var box = form.consent;
+    if (!box) return '';
+    var label = box.closest('label') || form.querySelector('label[for="consent"]');
+    return label ? label.textContent.replace(/\s+/g, ' ').trim() : '';
+  }
+
   var form = document.getElementById('contactForm');
   if (!form) return;
   var btn = form.querySelector('button[type="submit"]');
@@ -36,7 +49,9 @@
       program: get('program') || get('format'),
       message: message,
       page: location.href,
-      consent: !!(form.consent && form.consent.checked)
+      consent: !!(form.consent && form.consent.checked),
+      consentText: consentText(form),
+      docsVersion: DOCS_VERSION
     };
 
     var original = btn ? btn.textContent : '';
