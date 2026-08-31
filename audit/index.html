@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Продажи с инструментами импровизации — Роберт Фитчелл</title>
+  <title>Аудит системы продаж — Роберт Фитчелл</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="/fonts.css">
   <style>
@@ -263,14 +263,13 @@
     /* ── ПРОГРАММЫ ── */
     .programs-wrap {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px; margin-top: 56px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px; margin-top: 56px;
     }
     .program-card {
       background: rgba(0,0,0,0.55);
       border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px 26px;
+      border-radius: 20px; padding: 36px 32px;
       backdrop-filter: blur(16px);
       position: relative; overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
@@ -301,29 +300,6 @@
       background: rgba(137,101,224,0.2);
       border: 1px solid rgba(137,101,224,0.4);
       color: var(--gold);
-    }
-    .program-badge.popular {
-      background: var(--grad);
-      border: 1px solid transparent;
-      color: #fff;
-    }
-    .program-card.popular {
-      border-color: rgba(245,54,92,0.4);
-    }
-    .program-card.popular::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: var(--grad);
-    }
-    .program-support {
-      margin-top: 4px;
-      padding: 12px 14px;
-      background: rgba(137,101,224,0.1);
-      border: 1px solid rgba(137,101,224,0.3);
-      border-radius: 12px;
-      font-size: 0.82rem; font-weight: 600;
-      color: var(--text);
-      display: flex; align-items: center; gap: 8px;
     }
 
     .program-duration {
@@ -406,7 +382,7 @@
     }
     .compare-row {
       display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       border-bottom: 1px solid var(--border);
     }
     .compare-row:last-child { border-bottom: none; }
@@ -425,10 +401,6 @@
     }
     .compare-row.header .compare-cell:nth-child(3) {
       color: var(--gold);
-      background: rgba(137,101,224,0.2);
-    }
-    .compare-row:not(.header) .compare-cell:nth-child(3) {
-      background: rgba(137,101,224,0.08) !important;
     }
     .compare-row:not(.header):nth-child(even) .compare-cell {
       background: rgba(0,0,0,0.3);
@@ -479,7 +451,7 @@
     .form-input::placeholder { color: rgba(255,255,255,0.2); }
 
     /* Program choice */
-    .program-choice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .program-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .choice-option { position: relative; }
     .choice-option input[type="radio"] {
       position: absolute; opacity: 0; width: 0; height: 0;
@@ -558,8 +530,8 @@
       main { padding: 100px 24px 60px; }
       nav { padding: 16px 24px; }
       .programs-wrap { grid-template-columns: 1fr; }
-      .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
-      .compare-cell { padding: 12px 9px; font-size: 0.72rem; }
+      .compare-row { grid-template-columns: 1fr 1fr 1fr; }
+      .compare-cell { padding: 14px 14px; font-size: 0.78rem; }
       #form-section { padding: 36px 24px; }
       .form-grid { grid-template-columns: 1fr; }
       .form-field.full { grid-column: 1; }
@@ -602,14 +574,14 @@
 
   <!-- ── HERO ── -->
   <section id="hero">
-    <div class="hero-tag"><span></span>Тренинг по продажам</div>
+    <div class="hero-tag"><span></span>Аудит системы продаж</div>
     <h1 class="hero-name fade-up">
-      Продажи<br>с инструментами<br><span class="accent">импровизации</span>
+      Аудит<br>системы <span class="accent">продаж</span>
     </h1>
     <p class="hero-desc fade-up">
-      Корпоративная программа, которая меняет не только скрипты —
-      она меняет поведение. Участники учатся думать, реагировать
-      и закрывать сделки в любой ситуации.
+      Диагностирую вашу воронку, команду и процессы изнутри. Нахожу,
+      где именно вы теряете клиентов и деньги — и даю конкретный план
+      их вернуть. Без воды: только цифры, причины и действия.
     </p>
     <div class="hero-stats fade-up">
       <div>
@@ -617,12 +589,12 @@
         <div class="hero-stat-label">Лет опыта в продажах</div>
       </div>
       <div>
-        <div class="hero-stat-num">10 000+</div>
-        <div class="hero-stat-label">Обученных сотрудников</div>
+        <div class="hero-stat-num">3–7</div>
+        <div class="hero-stat-label">Дней на аудит</div>
       </div>
       <div>
-        <div class="hero-stat-num">14+</div>
-        <div class="hero-stat-label">Лет тренерской практики</div>
+        <div class="hero-stat-num">10 000+</div>
+        <div class="hero-stat-label">Обученных сотрудников</div>
       </div>
     </div>
   </section>
@@ -630,179 +602,140 @@
   <!-- ── ДЛЯ КОГО ── -->
   <section id="audience">
     <div class="section-label fade-up">Для кого</div>
-    <h2 class="section-title fade-up">Кому подойдёт<br>эта <span class="accent">программа</span></h2>
-    <p class="section-sub fade-up">Тренинг адаптируется под специфику вашего бизнеса и команды.</p>
+    <h2 class="section-title fade-up">Когда нужен<br><span class="accent">аудит</span></h2>
+    <p class="section-sub fade-up">Аудит окупается там, где есть отдел продаж, но результат не такой, как мог бы быть.</p>
 
     <div class="audience-grid">
       <div class="audience-card fade-up">
-        <div class="audience-title">Менеджеры по продажам</div>
-        <div class="audience-desc">Хотят уверенно вести переговоры, работать с возражениями и закрывать больше сделок.</div>
+        <div class="audience-title">Выручка встала</div>
+        <div class="audience-desc">Продаёте, но рост остановился — а где именно теряете, непонятно.</div>
       </div>
       <div class="audience-card fade-up">
-        <div class="audience-title">Отдел продаж целиком</div>
-        <div class="audience-desc">Команды, которым нужен единый стандарт работы с клиентом и общий язык.</div>
+        <div class="audience-title">Лиды есть, продаж мало</div>
+        <div class="audience-desc">Трафик и заявки идут, но конверсия в сделку низкая, деньги утекают из воронки.</div>
       </div>
       <div class="audience-card fade-up">
-        <div class="audience-title">Руководители отдела</div>
-        <div class="audience-desc">РОПы, которые хотят поднять результаты команды и построить систему продаж.</div>
+        <div class="audience-title">Команда работает по-разному</div>
+        <div class="audience-desc">Один менеджер продаёт, другой нет. Нет единого стандарта и понятных причин.</div>
       </div>
       <div class="audience-card fade-up">
-        <div class="audience-title">Независимые эксперты</div>
-        <div class="audience-desc">Риелторы, дизайнеры, консультанты — все, кто продаёт себя и свою экспертизу лично.</div>
+        <div class="audience-title">Перед масштабированием</div>
+        <div class="audience-desc">Хотите нанимать и расти — но сначала нужно понять, что чинить, а что тиражировать.</div>
       </div>
     </div>
   </section>
 
-  <!-- ── УНИКАЛЬНОСТЬ ── -->
+  <!-- ── ЧТО ПРОВЕРЯЮ ── -->
   <section id="unique">
-    <div class="section-label fade-up">Уникальность</div>
-    <h2 class="section-title fade-up">Почему это<br>работает <span class="accent">иначе</span></h2>
+    <div class="section-label fade-up">Что проверяю</div>
+    <h2 class="section-title fade-up">7 зон<br><span class="accent">диагностики</span></h2>
 
     <div class="unique-grid">
       <div class="unique-card fade-up">
         <div class="unique-num">01</div>
-        <div class="unique-title">Импровизация как инструмент</div>
-        <div class="unique-desc">Техники театральной импровизации встроены в продажи. Участники учатся слышать клиента и реагировать мгновенно — без заученных фраз.</div>
+        <div class="unique-title">Воронка и конверсии</div>
+        <div class="unique-desc">Считаю переходы на каждом этапе — от заявки до оплаты. Показываю точную стадию, где вы теряете больше всего клиентов и денег.</div>
       </div>
       <div class="unique-card fade-up">
         <div class="unique-num">02</div>
-        <div class="unique-title">Тренер + Эксперт + Актёр</div>
-        <div class="unique-desc">18 лет реального опыта в продажах, 14 лет тренерской практики и актёрское образование — всё это в одной программе.</div>
+        <div class="unique-title">Навыки команды</div>
+        <div class="unique-desc">Слушаю реальные звонки и встречи, разбираю переговоры менеджеров. Где недожимают, где теряют клиента, кто чему недоучен.</div>
       </div>
       <div class="unique-card fade-up">
+        <div class="unique-title">Процессы и узкие места</div>
         <div class="unique-num">03</div>
-        <div class="unique-title">Реальные ситуации вашей компании</div>
-        <div class="unique-desc">Программа строится на конкретных возражениях и сценариях из вашего бизнеса, а не абстрактных примерах.</div>
+        <div class="unique-desc">Ищу первопричину проблем, а не симптомы: почему сделки затягиваются, где буксует процесс, что мешает команде продавать.</div>
       </div>
       <div class="unique-card fade-up">
         <div class="unique-num">04</div>
-        <div class="unique-title">Устойчивый результат</div>
-        <div class="unique-desc">Не просто знания — изменение поведения. Участники уходят с навыками, которые применяют уже на следующий день.</div>
+        <div class="unique-title">Скрипты и инструменты</div>
+        <div class="unique-desc">Проверяю скрипты, коммерческие, презентации: работают ли они на сделку или мешают. Чего не хватает менеджеру под рукой.</div>
+      </div>
+      <div class="unique-card fade-up">
+        <div class="unique-num">05</div>
+        <div class="unique-title">CRM и «потеряшки»</div>
+        <div class="unique-desc">Как ведётся база, теряются ли клиенты после первого «нет», сколько денег лежит в необработанных заявках и забытых сделках.</div>
+      </div>
+      <div class="unique-card fade-up">
+        <div class="unique-num">06</div>
+        <div class="unique-title">Риски</div>
+        <div class="unique-desc">Составляю карту рисков продаж: что может обрушить выручку — уход ключевого клиента, зависимость от одного канала, человеческий фактор.</div>
       </div>
     </div>
   </section>
 
-  <!-- ── ПРОГРАММЫ ── -->
+  <!-- ── КАК ПРОХОДИТ ── -->
   <section id="programs">
-    <div class="section-label fade-up">Программы</div>
-    <h2 class="section-title fade-up">Три формата —<br>один <span class="accent">результат</span></h2>
+    <div class="section-label fade-up">Как проходит</div>
+    <h2 class="section-title fade-up">От диагностики —<br>к <span class="accent">плану роста</span></h2>
 
     <div class="programs-wrap">
 
-      <!-- 1 ДЕНЬ -->
+      <!-- ЭКСПРЕСС -->
       <div class="program-card fade-up">
-        <div class="program-badge basic">Базовый формат</div>
-        <div class="program-duration">1 день · Быстрый старт</div>
-        <div class="program-title">Быстрый старт</div>
-        <div class="program-subtitle">Полный цикл продаж за один интенсивный день. Теория + практика + готовые инструменты.</div>
+        <div class="program-badge basic">Экспресс-аудит</div>
+        <div class="program-duration">2–3 дня · Онлайн</div>
+        <div class="program-title">Быстрая<br>диагностика</div>
+        <div class="program-subtitle">Сжатый аудит ключевых зон: где главные потери и что делать в первую очередь.</div>
 
         <ul class="program-topics">
-          <li>Психология продаж и влияния — почему клиенты принимают решения</li>
-          <li>Пошаговый процесс продаж — от первого контакта до закрытия</li>
-          <li>Адаптация к разным типам клиентов</li>
-          <li>Выявление реальных потребностей — активное слушание и правильные вопросы</li>
-          <li>Скрипты для холодных звонков, встреч и переговоров</li>
-          <li>Техники работы с возражениями — мягкие и эффективные методы</li>
-          <li>Триггеры продаж и психологические рычаги</li>
-          <li>Эмоциональный интеллект в продажах</li>
-          <li>Ролевые игры — отработка на реальных примерах</li>
-          <li>Закрытие сделки без давления</li>
+          <li>Экспресс-анализ воронки и конверсий</li>
+          <li>Разбор выборки звонков/переговоров</li>
+          <li>Проверка скриптов и ведения CRM</li>
+          <li>Диагностическая сессия с руководителем</li>
+          <li>Топ-проблемы с приоритизацией по эффекту</li>
         </ul>
 
         <div class="program-results">
-          <div class="program-results-label">Результат после тренинга</div>
+          <div class="program-results-label">Что получите</div>
           <ul>
-            <li>Понимание полного цикла продаж</li>
-            <li>Готовые скрипты для применения с первого дня</li>
-            <li>Практические инструменты для работы с клиентами</li>
-            <li>Уверенность в своих навыках</li>
+            <li>Отчёт с точками потерь в деньгах</li>
+            <li>Топ-5 приоритетов «максимум результата — минимум усилий»</li>
+            <li>Быстрые победы, которые внедряются сразу</li>
           </ul>
         </div>
 
-        <div class="program-price">120 000 ₽</div>
-        <div class="program-price-label">для быстрого результата</div>
+        <div class="program-price">по согласованию</div>
+        <div class="program-price-label">для быстрой картины</div>
       </div>
 
-      <!-- 1 ДЕНЬ + ПОДДЕРЖКА -->
-      <div class="program-card popular fade-up">
-        <div class="program-badge popular">Популярный</div>
-        <div class="program-duration">1 день · Быстрый старт</div>
-        <div class="program-title">Быстрый старт</div>
-        <div class="program-subtitle">Полный цикл продаж за один интенсивный день. Теория + практика + готовые инструменты.</div>
-
-        <ul class="program-topics">
-          <li>Психология продаж и влияния — почему клиенты принимают решения</li>
-          <li>Пошаговый процесс продаж — от первого контакта до закрытия</li>
-          <li>Адаптация к разным типам клиентов</li>
-          <li>Выявление реальных потребностей — активное слушание и правильные вопросы</li>
-          <li>Скрипты для холодных звонков, встреч и переговоров</li>
-          <li>Техники работы с возражениями — мягкие и эффективные методы</li>
-          <li>Триггеры продаж и психологические рычаги</li>
-          <li>Эмоциональный интеллект в продажах</li>
-          <li>Ролевые игры — отработка на реальных примерах</li>
-          <li>Закрытие сделки без давления</li>
-        </ul>
-
-        <div class="program-support">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          Поддержка в течение месяца в Telegram-чате
-        </div>
-
-        <div class="program-results">
-          <div class="program-results-label">Результат после тренинга</div>
-          <ul>
-            <li>Понимание полного цикла продаж</li>
-            <li>Готовые скрипты для применения с первого дня</li>
-            <li>Практические инструменты для работы с клиентами</li>
-            <li>Уверенность в своих навыках</li>
-            <li>Сопровождение и разбор вопросов месяц после тренинга</li>
-          </ul>
-        </div>
-
-        <div class="program-price">150 000 ₽</div>
-        <div class="program-price-label">быстрый старт с поддержкой</div>
-      </div>
-
-      <!-- 2 ДНЯ -->
+      <!-- ПОЛНЫЙ -->
       <div class="program-card featured fade-up">
-        <div class="program-badge pro">Полная трансформация</div>
-        <div class="program-duration">2 дня · Максимальный результат</div>
-        <div class="program-title">Полная<br>трансформация</div>
-        <div class="program-subtitle">Углублённая работа с командой. Многократная отработка, индивидуальная обратная связь и устойчивые изменения.</div>
+        <div class="program-badge pro">Полный аудит</div>
+        <div class="program-duration">5–7 дней · Онлайн / Выезд</div>
+        <div class="program-title">Полная<br>система</div>
+        <div class="program-subtitle">Глубокая диагностика всех 7 зон с дорожной картой роста и защитой результатов.</div>
 
-        <div class="program-day-label">День 1 — Фундамент</div>
+        <div class="program-day-label">Диагностика</div>
         <ul class="program-topics">
-          <li>Психология продаж и мотивация клиентов</li>
-          <li>Пошаговый процесс продаж — подробный разбор каждого этапа</li>
-          <li>Адаптация и гибкость в диалоге</li>
-          <li>Выявление потребностей через глубокое слушание</li>
-          <li>Готовые скрипты + первичная практика (ролевые игры)</li>
+          <li>Полный разбор воронки, метрик и конверсий по этапам</li>
+          <li>Прослушка звонков и оценка навыков каждого менеджера</li>
+          <li>Поиск первопричин узких мест в процессах</li>
+          <li>Аудит скриптов, инструментов, CRM и «потеряшек»</li>
+          <li>Карта рисков продаж</li>
         </ul>
 
-        <div class="program-day-label">День 2 — Практика и закрепление</div>
+        <div class="program-day-label">Результат</div>
         <ul class="program-topics">
-          <li>Углублённая работа с возражениями — реальные ситуации компании</li>
-          <li>Интенсивные ролевые игры: холодные звонки, сложные переговоры</li>
-          <li>Техники закрытия сделки — практическая отработка</li>
-          <li>Индивидуальная обратная связь для каждого участника</li>
-          <li>Эмоциональный интеллект и работа со стрессом</li>
-          <li>Закрепление навыков и план применения</li>
+          <li>Структурированный отчёт «Проблемы и решения»</li>
+          <li>Двойная приоритизация: по деньгам и по лёгкости внедрения</li>
+          <li>Дорожная карта роста — что, когда и в каком порядке</li>
+          <li>Быстрые победы + стратегические шаги</li>
+          <li>Встреча-защита: разбираю выводы, отвечаю на вопросы</li>
         </ul>
 
         <div class="program-results">
-          <div class="program-results-label">Результат после тренинга</div>
+          <div class="program-results-label">Что получите</div>
           <ul>
-            <li>Глубокое понимание психологии продаж</li>
-            <li>Практические навыки, отработанные многократно</li>
-            <li>Уверенность в любых ситуациях с клиентом</li>
-            <li>Персональные рекомендации по развитию каждого</li>
-            <li>Устойчивые изменения в поведении и результатах</li>
-            <li>Сплочение команды через совместные упражнения</li>
+            <li>Полную картину системы продаж без слепых зон</li>
+            <li>Понимание, где именно и сколько денег вы теряете</li>
+            <li>Готовый план роста с приоритетами</li>
+            <li>Риски и способы их закрыть</li>
           </ul>
         </div>
 
-        <div class="program-price">220 000 ₽</div>
-        <div class="program-price-label">для устойчивых навыков</div>
+        <div class="program-price">по согласованию</div>
+        <div class="program-price-label">для системного роста</div>
       </div>
 
     </div>
@@ -811,62 +744,48 @@
   <!-- ── СРАВНЕНИЕ ── -->
   <section id="compare">
     <div class="section-label fade-up">Сравнение</div>
-    <h2 class="section-title fade-up">Отличие<br><span class="accent">программ</span></h2>
+    <h2 class="section-title fade-up">Два<br><span class="accent">формата</span></h2>
 
     <div class="compare-table fade-up">
       <div class="compare-row header">
         <div class="compare-cell"></div>
-        <div class="compare-cell">1 день — Быстрый старт</div>
-        <div class="compare-cell">1 день + поддержка</div>
-        <div class="compare-cell">2 дня — Трансформация</div>
+        <div class="compare-cell">Экспресс · 2–3 дня</div>
+        <div class="compare-cell">Полный · 5–7 дней</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell label">Теория</div>
-        <div class="compare-cell val"><span class="check">✓</span> Полная</div>
-        <div class="compare-cell val"><span class="check">✓</span> Полная</div>
-        <div class="compare-cell val-pro"><span class="check">✓</span> Полная + углублённая</div>
+        <div class="compare-cell label">Воронка и конверсии</div>
+        <div class="compare-cell val"><span class="check">✓</span> Экспресс-анализ</div>
+        <div class="compare-cell val-pro"><span class="check">✓</span> Полный разбор по этапам</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell label">Практика</div>
-        <div class="compare-cell val"><span class="check">✓</span> Базовая отработка</div>
-        <div class="compare-cell val"><span class="check">✓</span> Базовая отработка</div>
-        <div class="compare-cell val-pro"><span class="check">✓</span> Глубокая, многократная</div>
+        <div class="compare-cell label">Оценка команды</div>
+        <div class="compare-cell val">Выборка звонков</div>
+        <div class="compare-cell val-pro">Каждый менеджер</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell label">Ролевые игры</div>
-        <div class="compare-cell val">2–3 упражнения</div>
-        <div class="compare-cell val">2–3 упражнения</div>
-        <div class="compare-cell val-pro">5–7 упражнений с разными сценариями</div>
+        <div class="compare-cell label">Первопричины процессов</div>
+        <div class="compare-cell val">Ключевые</div>
+        <div class="compare-cell val-pro"><span class="check">✓</span> Полный разбор</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell label">Скрипты</div>
-        <div class="compare-cell val"><span class="check">✓</span> Готовые скрипты</div>
-        <div class="compare-cell val"><span class="check">✓</span> Готовые скрипты</div>
-        <div class="compare-cell val-pro"><span class="check">✓</span> Скрипты + практика адаптации</div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell label">Обратная связь</div>
-        <div class="compare-cell val">Групповая</div>
-        <div class="compare-cell val">Групповая</div>
-        <div class="compare-cell val-pro">Индивидуальная для каждого</div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell label">Поддержка после</div>
+        <div class="compare-cell label">Карта рисков</div>
         <div class="compare-cell val">—</div>
-        <div class="compare-cell val"><span class="check">✓</span> Чат 1 месяц</div>
-        <div class="compare-cell val-pro">Чат + индивидуальные консультации</div>
+        <div class="compare-cell val-pro"><span class="check">✓</span> Да</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell label">Закрепление навыков</div>
-        <div class="compare-cell val">Хорошее</div>
-        <div class="compare-cell val">Хорошее+</div>
-        <div class="compare-cell val-pro">Отличное — устойчивые изменения</div>
+        <div class="compare-cell label">Дорожная карта роста</div>
+        <div class="compare-cell val">Топ-приоритеты</div>
+        <div class="compare-cell val-pro"><span class="check">✓</span> Полная, по этапам</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Встреча-защита результатов</div>
+        <div class="compare-cell val">Онлайн-разбор</div>
+        <div class="compare-cell val-pro"><span class="check">✓</span> Развёрнутая встреча</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Стоимость</div>
-        <div class="compare-cell val">120 000 ₽</div>
-        <div class="compare-cell val">150 000 ₽</div>
-        <div class="compare-cell val-pro">220 000 ₽</div>
+        <div class="compare-cell val">по согласованию</div>
+        <div class="compare-cell val-pro">по согласованию</div>
       </div>
     </div>
   </section>
@@ -880,46 +799,38 @@
     <form class="form-grid" id="contactForm">
       <div class="form-field">
         <label class="form-label" for="name">Ваше имя</label>
-        <input class="form-input ym-disable-keys" type="text" id="name" name="name" placeholder="Иван Иванов" required>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Иван Иванов" required>
       </div>
       <div class="form-field">
         <label class="form-label" for="phone">Телефон</label>
-        <input class="form-input ym-disable-keys" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
       </div>
       <div class="form-field">
         <label class="form-label" for="company">Компания</label>
-        <input class="form-input ym-disable-keys" type="text" id="company" name="company" placeholder="Название компании">
+        <input class="form-input" type="text" id="company" name="company" placeholder="Название компании">
       </div>
       <div class="form-field">
         <label class="form-label" for="team">Размер команды</label>
-        <input class="form-input ym-disable-keys" type="text" id="team" name="team" placeholder="например, 10 человек">
+        <input class="form-input" type="text" id="team" name="team" placeholder="например, 10 человек">
       </div>
 
       <div class="form-field full">
         <label class="form-label">Выберите программу</label>
         <div class="program-choice">
           <div class="choice-option">
-            <input type="radio" id="p1" name="program" value="1 день — Быстрый старт (120 000 ₽)" checked>
+            <input type="radio" id="p1" name="program" value="Экспресс-аудит (2–3 дня)" checked>
             <label class="choice-label" for="p1">
-              <span class="choice-label-title">1 день</span>
-              <span class="choice-label-sub">Быстрый старт</span>
-              <span class="choice-label-price">120 000 ₽</span>
+              <span class="choice-label-title">Экспресс</span>
+              <span class="choice-label-sub">2–3 дня · онлайн</span>
+              <span class="choice-label-price">по согласованию</span>
             </label>
           </div>
           <div class="choice-option">
-            <input type="radio" id="p2" name="program" value="1 день + поддержка в ТГ месяц (150 000 ₽)">
+            <input type="radio" id="p2" name="program" value="Полный аудит (5–7 дней)">
             <label class="choice-label" for="p2">
-              <span class="choice-label-title">1 день +</span>
-              <span class="choice-label-sub">Быстрый старт + поддержка</span>
-              <span class="choice-label-price">150 000 ₽</span>
-            </label>
-          </div>
-          <div class="choice-option">
-            <input type="radio" id="p3" name="program" value="2 дня — Полная трансформация (220 000 ₽)">
-            <label class="choice-label" for="p3">
-              <span class="choice-label-title">2 дня</span>
-              <span class="choice-label-sub">Полная трансформация</span>
-              <span class="choice-label-price">220 000 ₽</span>
+              <span class="choice-label-title">Полный</span>
+              <span class="choice-label-sub">5–7 дней · выезд</span>
+              <span class="choice-label-price">по согласованию</span>
             </label>
           </div>
         </div>
@@ -950,10 +861,6 @@
             <a href="https://t.me/Fitchell" class="footer-social" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
                 Telegram
-            </a>
-            <a href="mailto:robertahmetgareev@yandex.ru" class="footer-social">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-                robertahmetgareev@yandex.ru
             </a>
         </div>
     </div>
@@ -1035,7 +942,6 @@
   });
 </script>
 
-<script src="/form-submit.js?v=20260831" defer></script>
 <script src="/cookie-consent.js?v=20260831" defer></script>
 </body>
 </html>

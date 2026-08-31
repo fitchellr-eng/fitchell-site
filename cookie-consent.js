@@ -1,12 +1,31 @@
 /* Cookie / аналитика — баннер согласия (152-ФЗ, информирование о cookie и Яндекс.Метрике).
    "Принять" → запускается Яндекс.Метрика (window.ymInit, если объявлена на странице).
-   "Отклонить" → Метрика НЕ запускается. Выбор хранится в localStorage.
+   "Отклонить" → Метрика НЕ запускается, ранее выставленные ею cookie удаляются.
+   Выбор хранится в localStorage.
+   Согласие отзывается в любой момент (ч. 2 ст. 9 152-ФЗ): ссылка «Настройки cookie»
+   в подвале (любой элемент с data-cookie-settings или href="#cookie-settings")
+   открывает баннер заново. Тот же вызов доступен как window.cookieSettings().
    Стиль — матовое «стекло» сайта; акцент (фиолетовый/золотой) подхватывается со страницы. */
 (function () {
   var KEY = 'cookieConsent';
 
   function runAnalytics() {
     if (typeof window.ymInit === 'function') window.ymInit();
+  }
+
+  /* Метрика ставит cookie вида _ym_*. При отзыве согласия их нужно убрать —
+     иначе отказ формальный: идентификатор посетителя остаётся в браузере. */
+  function dropAnalyticsCookies() {
+    var host = location.hostname;
+    var domains = ['', host, '.' + host, '.' + host.replace(/^www\./, '')];
+    document.cookie.split(';').forEach(function (raw) {
+      var name = raw.split('=')[0].trim();
+      if (name.indexOf('_ym') !== 0) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' +
+          (d ? '; domain=' + d : '');
+      });
+    });
   }
 
   function theme() {
@@ -83,7 +102,11 @@
     });
     bar.querySelector('.cc-decline').addEventListener('click', function () {
       try { localStorage.setItem(KEY, 'declined'); } catch (e) {}
+      dropAnalyticsCookies();
       fadeOut(bar);
+      /* Метрика могла быть запущена в этом сеансе — перезагружаем страницу,
+         чтобы отказ вступил в силу немедленно, а не со следующего визита. */
+      if (typeof window.ym === 'function') setTimeout(function () { location.reload(); }, 350);
     });
   }
 
@@ -101,7 +124,24 @@
     setTimeout(function () { bar.remove(); }, 300);
   }
 
+  /* Открыть баннер повторно — чтобы изменить или отозвать ранее данное согласие. */
+  function openSettings() {
+    if (document.getElementById('cookie-consent')) return;
+    showBanner();
+  }
+
+  function bindSettingsLinks() {
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-cookie-settings], a[href="#cookie-settings"]');
+      if (!el) return;
+      e.preventDefault();
+      openSettings();
+    });
+  }
+
   function start() {
+    bindSettingsLinks();
+    window.cookieSettings = openSettings;
     var choice = null;
     try { choice = localStorage.getItem(KEY); } catch (e) {}
     if (choice === 'accepted') { runAnalytics(); return; }

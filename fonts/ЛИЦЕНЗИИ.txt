@@ -1,0 +1,18 @@
+Шрифты, используемые на сайте
+=============================
+
+Inter — SIL Open Font License 1.1
+  Правообладатель: The Inter Project Authors (Rasmus Andersson)
+  Официальный текст лицензии: https://github.com/rsms/inter/blob/master/LICENSE.txt
+
+Montserrat — SIL Open Font License 1.1
+  Правообладатель: The Montserrat Project Authors (Julieta Ulanovsky и др.)
+  Официальный текст лицензии: https://github.com/JulietaUla/Montserrat/blob/master/OFL.txt
+
+Обе гарнитуры распространяются свободно, в том числе для коммерческого
+использования и веб-встраивания, при условии сохранения уведомления об
+авторских правах. Лицензия не требует выплат и не запрещает использование
+на коммерческом сайте.
+
+Рекомендация: положить рядом полные тексты OFL.txt, скачанные по ссылкам выше —
+лицензия просит распространять свой текст вместе с файлами шрифтов.
