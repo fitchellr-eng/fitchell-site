@@ -7,3 +7,5 @@ Thumbs.db
 *.pem
 *.env
 .env*
+.claude/
+skills-lock.json

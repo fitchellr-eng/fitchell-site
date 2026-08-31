@@ -516,19 +516,19 @@
     <form class="form-grid" id="contactForm">
       <div class="form-field">
         <label class="form-label" for="name">Ваше имя</label>
-        <input class="form-input" type="text" id="name" name="name" placeholder="Иван Иванов" required>
+        <input class="form-input ym-disable-keys" type="text" id="name" name="name" placeholder="Иван Иванов" required>
       </div>
       <div class="form-field">
         <label class="form-label" for="phone">Телефон</label>
-        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        <input class="form-input ym-disable-keys" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
       </div>
       <div class="form-field">
         <label class="form-label" for="company">Компания</label>
-        <input class="form-input" type="text" id="company" name="company" placeholder="Название (если корпоративный запрос)">
+        <input class="form-input ym-disable-keys" type="text" id="company" name="company" placeholder="Название (если корпоративный запрос)">
       </div>
       <div class="form-field">
         <label class="form-label" for="role">Ваша роль</label>
-        <input class="form-input" type="text" id="role" name="role" placeholder="Тренер, HR, руководитель...">
+        <input class="form-input ym-disable-keys" type="text" id="role" name="role" placeholder="Тренер, HR, руководитель...">
       </div>
       <div class="form-field full">
         <label class="form-label">Формат обучения</label>
@@ -558,7 +558,7 @@
       </div>
       <div class="form-field full">
         <label class="form-label" for="comment">Комментарий</label>
-        <textarea class="form-input" id="comment" name="comment" rows="3" placeholder="Расскажите о своей задаче или вопросе..." style="resize:vertical;"></textarea>
+        <textarea class="form-input ym-disable-keys" id="comment" name="comment" rows="3" placeholder="Расскажите о своей задаче или вопросе..." style="resize:vertical;"></textarea>
       </div>
       <div class="form-field full">
         <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.45;margin-bottom:14px;cursor:pointer;text-align:left;color:rgba(255,255,255,0.65);">
@@ -582,7 +582,7 @@
             <a href="/#contact">Контакты</a>
         </div>
         <div class="footer-socials">
-            <a href="https://t.me/RobertFitchell" class="footer-social" target="_blank" rel="noopener">
+            <a href="https://t.me/Fitchell" class="footer-social" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
                 Telegram
             </a>
@@ -651,6 +651,7 @@
   });
 </script>
 
+<script src="/form-submit.js" defer></script>
 <script src="/cookie-consent.js" defer></script>
 </body>
 </html>
