@@ -12,6 +12,7 @@ rsync -az --delete \
   --exclude 'cloud-function' --exclude 'CNAME' --exclude 'skills-lock.json' \
   --exclude '.DS_Store' --exclude '.gitignore' \
   --exclude 'audit' \
+  --exclude 'audit-preview-*' \
   "$SRC" "$HOST:$DEST"
 
 # права выставляем на сервере: старый rsync с Mac тащит сюда локальные права

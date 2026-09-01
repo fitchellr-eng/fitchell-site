@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /audit/
+
+Sitemap: https://robertfitchell.ru/sitemap.xml
